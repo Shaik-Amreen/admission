@@ -1,0 +1,42 @@
+<form style="margin: 1.5rem;font-size: 0.9rem;">
+
+    <span *ngFor="let c of formdata">
+        <strong *ngIf="c.combine" style="color:#a5081a">{{c.label}}</strong>
+        <label style="font-weight:500" *ngIf="!c.combine">{{c.label}}
+            <sup style="color:#a5081a" *ngIf="c.required"><strong style="font-weight: 900">*</strong></sup>
+
+        </label><br />
+        <div style="margin-left:0.7rem">
+            <span style="margin-left: 1rem;" *ngIf="c.combine else single"><br />
+                <span *ngFor="let d of c.content">
+                    <label style="font-weight: 500;">{{d.label}}</label>&nbsp;
+                    <sup style="color:#a5081a" *ngIf="d.required"><strong style="font-weight: 900">*</strong></sup>
+                    <input class="form-control shadow-none" type="{{d.type}}" *ngIf="d.tag=='input'" />
+                    <select class="form-control shadow-none" *ngIf="d.tag=='select'">
+                        <option value="" disabled selected>Please select</option>
+                        <option *ngFor="let o of d.options" value="{{o.value}}">{{o.view}}</option>
+                    </select>
+                    <span *ngIf="d.content"><br />
+                        <div style="margin-left:1rem" *ngFor="let e of d.content"><br />
+                            <span>{{e.label}}
+                                <sup style="color:#a5081a" *ngIf="e.required"><strong
+                                        style="font-weight: 900">*</strong></sup>
+                            </span>
+                            <input class="form-control shadow-none" type="{{e.type}}" *ngIf="e.tag=='input'" />
+                            <select class="form-control shadow-none" *ngIf="e.tag=='select'">
+                                <option value="" disabled selected>Please select</option>
+                                <option *ngFor="let f of e.options" value="{{f.value}}">{{f.view}}</option>
+                            </select>
+                        </div>
+                    </span>
+                    <br />
+                </span>
+            </span>
+            <ng-template #single>
+                <input class="form-control shadow-none" type="{{c.type}}" />
+                <br />
+
+            </ng-template>
+        </div>
+    </span>
+</form>
