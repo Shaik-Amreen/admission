@@ -1,42 +1,68 @@
-<form style="margin: 1.5rem;font-size: 0.9rem;">
+<div style="width:100%;position: fixed;">
 
-    <span *ngFor="let c of formdata">
-        <strong *ngIf="c.combine" style="color:#a5081a">{{c.label}}</strong>
-        <label style="font-weight:500" *ngIf="!c.combine">{{c.label}}
-            <sup style="color:#a5081a" *ngIf="c.required"><strong style="font-weight: 900">*</strong></sup>
 
-        </label><br />
-        <div style="margin-left:0.7rem">
-            <span style="margin-left: 1rem;" *ngIf="c.combine else single"><br />
-                <span *ngFor="let d of c.content">
-                    <label style="font-weight: 500;">{{d.label}}</label>&nbsp;
-                    <sup style="color:#a5081a" *ngIf="d.required"><strong style="font-weight: 900">*</strong></sup>
-                    <input class="form-control shadow-none" type="{{d.type}}" *ngIf="d.tag=='input'" />
-                    <select class="form-control shadow-none" *ngIf="d.tag=='select'">
-                        <option value="" disabled selected>Please select</option>
-                        <option *ngFor="let o of d.options" value="{{o.value}}">{{o.view}}</option>
-                    </select>
-                    <span *ngIf="d.content"><br />
-                        <div style="margin-left:1rem" *ngFor="let e of d.content"><br />
-                            <span>{{e.label}}
-                                <sup style="color:#a5081a" *ngIf="e.required"><strong
-                                        style="font-weight: 900">*</strong></sup>
-                            </span>
-                            <input class="form-control shadow-none" type="{{e.type}}" *ngIf="e.tag=='input'" />
-                            <select class="form-control shadow-none" *ngIf="e.tag=='select'">
-                                <option value="" disabled selected>Please select</option>
-                                <option *ngFor="let f of e.options" value="{{f.value}}">{{f.view}}</option>
-                            </select>
-                        </div>
-                    </span>
-                    <br />
-                </span>
+
+
+    <div class="back">
+        <div class="row">
+            <!-- <div class="col-2"
+                    style="display: flex;justify-content: center;align-self: center;margin-left: 2rem;padding: 0.5rem;">
+                    <img src="assets/logo.png" style="height:90px;width:90px" />
+                </div> -->
+            <div class="col"
+                style="text-align:center;color:white;display: flex;justify-content: center;align-self: center;">
+                <div>
+                    <span style="font-family: 'Poppins', sans-serif;">MADANAPALLE INSTITUTE OF TECHNOLOGY AND
+                        SCIENCE</span><br />
+                    <strong style="font-size:0.7rem">UGC - AUTONOMOUS , ACCREDITED BY NAAC WITH A+ GRADE</strong><br />
+                    <span style="font-family: 'Poppins', sans-serif;">ADMISSION FORM</span><br />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <form class="table-responsive logo" style="padding: 1.5rem;font-size: 0.9rem;padding-top: 0rem;height: 90vh;">
+
+        <span *ngFor="let c of formdata">
+            <span *ngIf="c.label">
+                <strong *ngIf="c.combine" style="color:#a5081a">{{c.label}}</strong>
+                <label style="font-weight:500" *ngIf="!c.combine">{{c.label}}
+                    <sup style="color:#a5081a" *ngIf="c.required"><strong style="font-weight: 900">*</strong></sup>
+
+                </label><br />
             </span>
+            <div style="margin-left:0.7rem" *ngIf="c.combine else single">
+                <span style="margin-left: 1rem;"><br />
+                    <span *ngFor="let d of c.content">
+                        <label style="font-weight: 500;">{{d.label}}</label>&nbsp;
+                        <sup style="color:#a5081a" *ngIf="d.required"><strong style="font-weight: 900">*</strong></sup>
+                        <input class="form-control shadow-none" type="{{d.type}}" *ngIf="d.tag=='input'" />
+                        <select class="form-control shadow-none" *ngIf="d.tag=='select'">
+                            <option value="" disabled selected>Please select</option>
+                            <option *ngFor="let o of d.options" value="{{o.value}}">{{o.view}}</option>
+                        </select>
+                        <span *ngIf="d.content"><br />
+                            <div style="margin-left:1rem" *ngFor="let e of d.content"><br />
+                                <span>{{e.label}}
+                                    <sup style="color:#a5081a" *ngIf="e.required"><strong
+                                            style="font-weight: 900">*</strong></sup>
+                                </span>
+                                <input class="form-control shadow-none" type="{{e.type}}" *ngIf="e.tag=='input'" />
+                                <select class="form-control shadow-none" *ngIf="e.tag=='select'">
+                                    <option value="" disabled selected>Please select</option>
+                                    <option *ngFor="let f of e.options" value="{{f.value}}">{{f.view}}</option>
+                                </select>
+                            </div>
+                        </span>
+                        <br />
+                    </span>
+                </span>
+            </div>
             <ng-template #single>
                 <input class="form-control shadow-none" type="{{c.type}}" />
                 <br />
-
             </ng-template>
-        </div>
-    </span>
-</form>
+        </span>
+    </form>
+</div>
