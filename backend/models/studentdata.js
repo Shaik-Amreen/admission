@@ -36,7 +36,8 @@ const Schema = new mongoose.Schema({
     fatherannualincome: { type: String },
     studentsignature: { type: String },
     fathersignature: { type: "string" },
-
+    
+    approvedby:{type:"string"}
 
 })
 
