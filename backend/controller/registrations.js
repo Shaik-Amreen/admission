@@ -3,6 +3,8 @@ const admin = require("../models/admin")
 const bcryptjs = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const JWTSECRET = "mits"
+var randomstring = require("randomstring")
+const nodemailer = require("nodemailer")
 
 const encodeBuffer = (buffer) => buffer.toString("base64")
 const encodeString = (string) => encodeBuffer(Buffer.from(string))
@@ -13,31 +15,108 @@ const encrypt = (data) => {
     return encodeData(data)
 }
 
-register = (req, res) => {
+
+stdregister = async (req, res) => {
     data1 = await studentdata.findOne({ "hallticket": req.body.hallticket }).lean();
+    let otp = randomstring.generate(6)
     if (!data1) {
-        res.send({ message: "Invalid Hallticket" })
+        req.body.otp = otp
+        let mailDetails = {
+            from: "Admission Team",
+            to: [req.body.mail],
+            subject: `otp verification to register for MITS`,
+            html: `Your register otp is ${req.body.otp}`
+        }
+        mail(req.body, mailDetails)
+        studentdata.create(req.body, (err) => {
+            if (!err) {
+                res.send({ message: "success" })
+            }
+        })
     }
     else {
+        if (data1[0].dob == "") {
+            req.body.otp = otp
+            let mailDetails = {
+                from: "Admission Team",
+                to: [req.body.mail],
+                subject: `otp verification to register for MITS`,
+                html: `Your register otp is ${req.body.otp}`
+            }
+            mail(req.body, mailDetails)
+            studentdata.updateOne({ "hallticket": req.body.hallticket }, { $set: req.body }, (err) => {
+                if (!err) {
+                    res.send({ message: "success" })
+                }
+            })
+        }
+        else {
+            res.send({ message: "studentexist" })
+        }
+    }
+}
+
+verifyopt = async (req, res) => {
+    data1 = await studentdata.findOne({ "hallticket": req.body.hallticket }).lean();
+    if (data1.otp==req.body.otp) {
+        res.send("studentVerified")
+    }
+}
+
+stdregistersubmit = async(req,res)=>{
+    data1 = await studentdata.findOne({ "hallticket": req.body.hallticket }).lean();
+    if(data){
+        let mailDetails = {
+            from: "Admission Team",
+            to: [req.body.mail],
+            subject: `Successfully Registered`,
+            html: `You have successfully registered for MITS`
+        }
+        mail(req.body, mailDetails)
         studentdata.updateOne({ "hallticket": req.body.hallticket }, { $set: req.body }, (err) => {
             if (!err) {
-                res.send({ message: "Successfully saved" })
+                res.send({ message: "success" })
             }
         })
     }
 }
 
-getstudents = (req, res) => {
+mail = (mailDetails) => {
+    let mailTransporter = nodemailer.createTransport({
+        service: "gmail.com",
+        auth: {
+            user: "arikya.hak@gmail.com",
+            pass: "arikya@123",
+        },
+        secureConnection: true,
+        tls: {
+            rejectUnauthorized: false,
+            secureProtocol: "TLSv1_method",
+        },
+    })
+    mailTransporter.sendMail(mailDetails, (err7, data) => {
+        if (err7) {
+            console.log(err7, "Error")
+        }
+        else {
+            console.log("mail sent")
+        }
+    }
+    )
+}
+
+getstudent = async (req, res) => {
     data2 = await studentdata.find({ "hallticket": req.body.hallticket, }).lean();
     res.send({ data: data2 })
 }
 
-poststudents = (req, res) => {
-    studentdata.create( req.body,(err) => {
-        (!err)&&res.send({message:"success"})}
-}
+// poststudents = (req, res) => {
+//     studentdata.create(req.body, (err) => {
+//         (!err) && res.send({ message: "success" })
+//     })
+// }
 
-adminlogin = (req, res) => {
+adminlogin = async (req, res) => {
     data1 = await admin.findOne({ "mail": req.body.mail }).lean();
     const tokenHashed = encrypt(jwt.sign({ subject: req.body.mail }, JWTSECRET))
         (!data1 || err1) ? res.send({ message: "Invalid User" }) :
@@ -47,4 +126,15 @@ adminlogin = (req, res) => {
         );
 }
 
-module.exports = { register }
+createadmin = async (req,res)=>{
+    data1 = await admin.findOne({ "mail": req.body.mail }).lean();
+    if(!data1){
+        admin.create(req.body,(err,data)=>{
+            if(data){
+                res.send({message:"success"})
+            }
+        })
+    }
+}
+
+module.exports = { createadmin, adminlogin,getstudent,stdregistersubmit,verifyopt,stdregister}

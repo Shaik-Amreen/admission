@@ -8,7 +8,6 @@ const routes: Routes = [
   { path: "", redirectTo: "/admission", pathMatch: "full" },
   { path: "admission", component: FormComponent },
   { path: "admin", component: AdminviewComponent }
-
 ];
 
 @NgModule({

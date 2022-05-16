@@ -2,10 +2,9 @@ const express = require("express")
 const app = express()
 const cors = require("cors")
 const cookieParser = require("cookie-parser")
-require("./Database/db")
+require("./database/database")
 const path = require('path')
-const { resourceLimits } = require("worker_threads")
-const controls = require("./controller/registrations")
+const routes = require("./routes/routers")
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json({ limit: "10000mb", extended: true }))
@@ -18,16 +17,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use('/register',controls.register)
-app.use('/adminlogin',controls.adminlogin)
-
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/index.html'))
-})
-
-
-
+app.use("/",routes)
 
 const host = '0.0.0.0';
 const port = process.env.PORT || 4000;
