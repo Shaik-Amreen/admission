@@ -115,6 +115,10 @@ getstudent = async (req, res) => {
     res.send({ data: data2 })
 }
 
+getadmin = async(req,res)=>{
+    data =await admin.findOne({mail:req.body.mail}).lean();
+    res.send({data:data})
+}
 
 // poststudents = (req, res) => {
 //     studentdata.create(req.body, (err) => {
@@ -124,8 +128,8 @@ getstudent = async (req, res) => {
 
 adminlogin = async (req, res) => {
     data1 = await admin.findOne({ "mail": req.body.mail }).lean();
-    const tokenHashed = encrypt(jwt.sign({ subject: req.body.mail }, JWTSECRET))
-        (!data1 || err1) ? res.send({ message: "Invalid User" }) :
+    const tokenHashed = encrypt(jwt.sign({ subject: req.body.mail }, JWTSECRET));
+        (!data1) ? res.send({ message: "Invalid User" }) :
         (
             ((bcryptjs.compareSync(req.body.password, data1.password)) ?
                 res.send({ 'token': tokenHashed, mail: req.body.mail, role: data1.role }) : res.send({ message: "Invalid Password" }))
@@ -133,6 +137,8 @@ adminlogin = async (req, res) => {
 }
 
 createadmin = async (req, res) => {
+    req.body.password = bcryptjs.hashSync(req.body.password, 10);
+    const tokenHashed = encrypt(jwt.sign({ subject: req.body.mail }, JWTSECRET))
     data1 = await admin.findOne({ "mail": req.body.mail }).lean();
     if (!data1) {
         admin.create(req.body, (err, data) => {

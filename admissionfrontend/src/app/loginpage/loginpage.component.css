@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap');
+
+
+.logo {
+    background-image: url("/assets/logo.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.back {
+    background-image: url("/assets/mits.png");
+}
+
+.cardshow{
+    cursor: pointer;
+    background-color: #fff;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding:1rem;
+    margin: 0.3rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 2px 2px 8px 2px;
+    border-radius: 3px;
+    width: 600px;height: 500px;
+}

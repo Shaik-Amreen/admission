@@ -8,6 +8,7 @@ import { FormComponent } from './form/form.component';
 import { AdminviewComponent } from './adminview/adminview.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ResponseComponent } from './response/response.component';
+import { LoginpageComponent } from './loginpage/loginpage.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ResponseComponent } from './response/response.component';
     FormComponent,
     AdminviewComponent,
     RegistrationComponent,
-    ResponseComponent
+    ResponseComponent,
+    LoginpageComponent
   ],
   imports: [
     BrowserModule,

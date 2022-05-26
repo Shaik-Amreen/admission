@@ -1,0 +1,92 @@
+<div class="back" style="width:100%;position: fixed;">
+    <div class="row">
+        <div class="col"
+            style="text-align:center;color:white;display: flex;justify-content: center;align-self: center;">
+            <div>
+                <span style="font-family: 'Poppins', sans-serif;">MADANAPALLE INSTITUTE OF TECHNOLOGY AND
+                    SCIENCE</span><br />
+                <strong style="font-size:0.7rem">UGC - AUTONOMOUS , ACCREDITED BY NAAC WITH A+ GRADE</strong><br />
+                <span style="font-family: 'Poppins', sans-serif;">REGISTRATION FORM</span><br />
+            </div>
+        </div>
+    </div>
+</div>
+<div style="display:flex;justify-content: center;align-items: center;align-content: center;padding-top: 10%;">
+    <div class=" logo cardshow">
+        <div *ngIf="viewforgotpass" class="col-sm  content">
+            <form (ngSubmit)="signIn()" [formGroup]="formgroupdata">
+                <span style="color: #a5081a;" *ngIf="errorMessage.includes('signup')">
+                    <br /><strong>{{errorMessage}}</strong><br /></span>
+                <span *ngFor="let k of formdata"><br>
+                    <strong style="color:#1b1c1e">{{k.label}}</strong>
+                    <div
+                        style="display: flex;background-color: #fff;border-radius: 4px;padding: 0rem 0.5rem;border: 0.2px solid rgb(209, 209, 209);">
+                        <i class={{k.icon}} style="font-size: 1.3rem;margin-top: 0.5rem;"></i>
+                        <input class="iconinput" style="border: none;"
+                            [type]='k.type=="password"? (temp? "text" : "password"):"text"'
+                            [ngClass]="formgroupdata.controls[k.formname].status=='INVALID' && formvalue==true ? 'form-control  shadow-none invalidstyle' : 'form-control  shadow-none'"
+                            formControlName="{{k.formname}}" placeholder={{k.placeholder}} type={{k.type}}
+                            *ngIf="k.tags=='input'">
+                        <span *ngIf="k.type=='password'">
+                            <span *ngIf="!temp" (click)="temp=!temp"><i class='{{k.icon1}}'
+                                    style="font-size: 1.3rem;margin-top: 0.5rem;"></i></span>
+                            <span *ngIf="temp" (click)="temp=!temp"><i class='{{k.icon2}}'
+                                    style="font-size: 1.3rem;margin-top: 0.5rem;"></i></span>
+                        </span>
+                    </div>
+                    <span class="danger" style="font-size: 0.8rem;">
+                        <span *ngIf="k.formname=='mail' && errorMessage=='Invalid mail'">
+                            &nbsp;{{errorMessage}}
+                        </span>
+                        <span *ngIf="k.formname=='password' && errorMessage=='Invalid password'">
+                            &nbsp;{{errorMessage}}
+                        </span>
+                    </span>
+                    <span style="color: #a5081a;"
+                        *ngIf="formgroupdata.controls[k.formname].status=='INVALID' && formvalue==true">
+                        please fill this field
+                    </span>
+                </span><br>
+                <!-- <strong style="float: right;color:#5cb85c;"  id="press" (click)="changeMode()">Forgot password ?
+                </strong><br> -->
+                <div style="align-items: center;display:flex;justify-content:center;padding-top: 5%;padding-bottom: 0%;">
+                    <button id="but" type="submit"  class="btn btn-danger">{{signin}}</button>
+                </div>
+            </form><br>
+        </div>
+    
+        <div *ngIf="!viewforgotpass" class="col-sm  content">
+            <div class="form-container sign-up-container">
+                <form #f="ngForm" (ngSubmit)="forget(f)" *ngIf='buttonMode!="SENT" else sent'>
+                    <div class="danger" *ngIf="mailerr!=''"><i class='bx bxs-error'></i>&nbsp;{{mailerr}}<br><br></div>
+                    <h1 style="font-family: 'Poppins', sans-serif;">Change password</h1><br />
+                    <input (click)="mailerr=''" class="form-control shadow-none" type="mail" placeholder="EMAIL"
+                        required [(ngModel)]="mail" name="mail" required /><br />
+                        <div style="align-items: center;display:flex;justify-content:center;">
+                            <button type="submit" class="btn btn-danger "
+                                [disabled]="!f.valid || buttonMode=='SENDING' ">{{buttonMode}}
+                                <div class="spinner-grow spinner-grow-sm" role="status"
+                                    *ngIf="buttonMode=='SENDING'"></div>
+                            </button>
+                        </div>
+                    <br />
+                </form>
+                <ng-template #sent>
+                    <form #f="ngForm" (ngSubmit)="checkOtp(f)">
+                        <div class="danger" *ngIf="invalidotp"><i class='bx bxs-error'></i>&nbsp;INVALID OTP<br><br>
+                        </div>
+                        <input type='number' class="form-control shadow-none" [(ngModel)]='otp' name='otp'
+                            placeholder="ENTER OTP" /><br>
+                            <div style="align-items: center;display:flex;justify-content:center;">
+                                <button type="submit" class="btn btn-danger" >VERIFY OTP</button>
+                            </div>
+                            <br><br />
+                        <div class="danger">Hurry Up ! {{timeRemained}} seconds remained .</div>
+                        <br>
+                    </form>
+                </ng-template><br />
+            </div>
+            <div (click)="viewforgotpass=!viewforgotpass" style="cursor: pointer;float: right;">Remember password ? <strong style="color: #5cb85c;">SIGN IN.</strong></div>
+        </div>
+    </div>
+</div>

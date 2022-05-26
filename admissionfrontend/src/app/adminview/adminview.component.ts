@@ -8,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminviewComponent implements OnInit {
 
-  studentdata: any = []; type: any = ''
+  studentdata: any = []; type: any = '';role:any
   constructor(private http: HttpClient) {
-
+    this.http.post('http://localhost:4000/getadmin',{mail:sessionStorage.getItem("mail")}).subscribe(
+      (res:any)=>{
+        this.role=res.role
+      }
+    )
   }
   showData: any = false
 
