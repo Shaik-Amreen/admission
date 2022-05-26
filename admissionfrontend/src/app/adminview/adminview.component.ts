@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,13 +11,33 @@ import { Router } from '@angular/router';
 })
 export class AdminviewComponent implements OnInit {
 
-  studentdata: any = []; type: any = '';role:any
+  temp: boolean = false; temp1: boolean = false;
+  formgroupdata: any = FormGroup; formvalue = false; 
+
+  mail = ''; otp = ''; generatedotp = ''; timeRemained = 120; invalidotp = false; mailerr = ''
+  loginMode = true; logindata = false; errorMessage = ''; vepa: any = false;
+  
+  formdata: any[] =
+    [
+      { "label": "Email address", "formname": "mail", "value": "", "valid": true, "tags": "input", "type": "email", "placeholder": "Enter your mail", "icon": 'bx bxs-envelope', "icon1": "", "icon2": "" },
+      { "label": "Password", "formname": "password", "value": '', "valid": true, "tags": "input", "placeholder": "Enter your password", "type": "password", "icon": "bx bxs-lock", "icon1": "bx bxs-hide", "icon2": "bx bxs-show" }
+    ]
+
+  studentdata: any = []; type: any = '';role:any;adduser=false
   constructor(private http: HttpClient,private router: Router) {
     this.http.post('http://localhost:4000/getadmin',{mail:sessionStorage.getItem("mail")}).subscribe(
       (res:any)=>{
-        this.role=res.role
+        this.role=res.data
+        console.log(this.role)
       }
     )
+    let form: any = {}
+
+    this.formdata.forEach((e: any) => {
+      (e.valid) ? form[e.formname] = new FormControl(e.value, Validators.required) :
+        form[e.formname] = new FormControl(e.value)
+      this.formgroupdata = new FormGroup(form)
+    })
   }
 
   display: any = 'none'
@@ -58,4 +80,16 @@ export class AdminviewComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  addadmin(){
+    this.formvalue = true;
+    if (this.formgroupdata.status == 'VALID') {
+      this.http.post("http://localhost:4000/createadmin",{...this.formgroupdata.value,role:"admin",createdby:sessionStorage.getItem("mail")}).subscribe(
+        (res:any)=>{
+          if(res.message=="success"){
+            this.adduser=false
+          }
+        }
+      )
+    }
+  }
 }

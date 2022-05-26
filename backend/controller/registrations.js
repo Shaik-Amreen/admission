@@ -117,7 +117,7 @@ getstudent = async (req, res) => {
 
 getadmin = async(req,res)=>{
     data =await admin.findOne({mail:req.body.mail}).lean();
-    res.send({data:data})
+    res.send({data:data.role})
 }
 
 // poststudents = (req, res) => {
@@ -149,4 +149,4 @@ createadmin = async (req, res) => {
     }
 }
 
-module.exports = { createadmin, adminlogin, getstudent, stdregistersubmit, verifyopt, stdregister }
+module.exports = { createadmin, adminlogin, getstudent, stdregistersubmit, verifyopt, stdregister,getadmin }

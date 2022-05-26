@@ -21,3 +21,27 @@ div {
         print-color-adjust: exact;
     }
 }
+
+.logo {
+    background-image: url("/assets/logo.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.cardshow{
+    cursor: pointer;
+    background-color: #fff;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding:1rem;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    margin: 0.3rem;
+    margin-top: 0;
+    margin-bottom: 0%;
+    box-shadow: rgba(99, 99, 99, 0.2) 2px 2px 8px 2px;
+    border-radius: 3px;
+    width: 600px;height: 500px;
+}

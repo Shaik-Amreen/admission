@@ -8,5 +8,6 @@ router.post('/stdregistersubmit',Controls.stdregistersubmit)
 router.post('/getstudent',Controls.getstudent)
 router.post('/adminlogin',Controls.adminlogin)
 router.post('/createadmin',Controls.createadmin)
+router.post('/getadmin',Controls.getadmin)
 
 module.exports = router
