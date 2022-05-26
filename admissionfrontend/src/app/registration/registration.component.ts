@@ -29,6 +29,9 @@ export class RegistrationComponent implements OnInit {
     })
   }
 
+
+
+
   register() {
     if (this.registration.status == 'VALID') {
       this.http.post('http://localhost:4000/stdregister', this.registration.value).subscribe(

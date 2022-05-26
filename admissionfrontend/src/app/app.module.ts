@@ -9,6 +9,7 @@ import { AdminviewComponent } from './adminview/adminview.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ResponseComponent } from './response/response.component';
 import { LoginpageComponent } from './loginpage/loginpage.component';
+import { EditdetailsComponent } from './editdetails/editdetails.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { LoginpageComponent } from './loginpage/loginpage.component';
     AdminviewComponent,
     RegistrationComponent,
     ResponseComponent,
-    LoginpageComponent
+    LoginpageComponent,
+    EditdetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-adminview',
@@ -9,18 +10,47 @@ import { Component, OnInit } from '@angular/core';
 export class AdminviewComponent implements OnInit {
 
   studentdata: any = []; type: any = '';role:any
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private router: Router) {
     this.http.post('http://localhost:4000/getadmin',{mail:sessionStorage.getItem("mail")}).subscribe(
       (res:any)=>{
         this.role=res.role
       }
     )
   }
+
+  display: any = 'none'
+
+  @ViewChild('report')
+  report!: ElementRef;
+  viewTop: any = true
+
+  openModal() {
+    this.viewTop = false;
+    this.display = "block";
+  }
+
+  async downloadPDF() {
+    // alert("Are you sure to print !")
+    window.print()
+  }
+
+
+  printpage() {
+    window.print()
+  }
+
+  edit() {
+    sessionStorage.setItem('hallticket', this.studentdata[0].hallticket)
+    this.router.navigate(['/edit'])
+  }
+
   showData: any = false
 
   filterStudent() {
     this.http.post('http://localhost:4000/getstudent', { hallticket: this.type }).subscribe(
-      (res: any) => { this.studentdata = res.data; this.showData = true },
+      (res: any) => {
+        this.studentdata = res.data; this.showData = true;
+      },
       (err: any) => console.log(err)
     )
   }

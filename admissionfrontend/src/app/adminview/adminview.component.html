@@ -5,7 +5,7 @@
     <br />
     <div
         style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;float:right ;margin-right: 2rem;padding: 0.2rem;border-radius: 5px;">
-        <input readonly [checked]="c{{." placeholde}}r="start typing hallticket number ..." style="outline:none;border: none;width: 20vw;"
+        <input disabled [checked]="c{{." placeholde}}r="start typing hallticket number ..." style="outline:none;border: none;width: 20vw;"
             [(ngModel)]="type" />
         <i class='bx bx-search'></i>
     </div><br />
@@ -107,7 +107,7 @@
                         <div class="col">
                             <div class="row">
                                 <div class="col-1">
-                                    <input readonly [checked]="c{{." typ}}e="checkbox">
+                                    <input disabled [checked]="c{{." typ}}e="checkbox">
                                 </div>
                                 <div class="col" style="text-align: left"> <label>INTER TC & STUDY
                                         CERTIFICATES</label><br />
@@ -116,7 +116,7 @@
                             <br />
                             <div class="row">
                                 <div class="col-1">
-                                    <input readonly [checked]="c{{." typ}}e="checkbox">
+                                    <input disabled [checked]="c{{." typ}}e="checkbox">
                                 </div>
                                 <div class="col" style="text-align: left"> <label>UG TC & STUDY
                                         CERTIFICATES</label><br />
@@ -125,7 +125,7 @@
                             <br />
                             <div class="row">
                                 <div class="col-1">
-                                    <input readonly [checked]="c{{." typ}}e="checkbox">
+                                    <input disabled [checked]="c{{." typ}}e="checkbox">
                                 </div>
                                 <div class="col" style="text-align: left"> <label>OTHERS/CAST/INCOME/RATION
                                         CARD</label><br />
@@ -134,7 +134,7 @@
                             <br />
                             <div class="row">
                                 <div class="col-1">
-                                    <input readonly [checked]="c{{." typ}}e="checkbox">
+                                    <input disabled [checked]="c{{." typ}}e="checkbox">
                                 </div>
                                 <div class="col" style="text-align: left"> <label>INTER MARKS MEMO</label><br />
                                 </div>
@@ -142,7 +142,7 @@
                             <br />
                             <div class="row">
                                 <div class="col-1">
-                                    <input readonly [checked]="c{{." typ}}e="checkbox">
+                                    <input disabled [checked]="c{{." typ}}e="checkbox">
                                 </div>
                                 <div class="col" style="text-align: left"> <label>UG-PC</label><br />
                                 </div>
@@ -150,7 +150,7 @@
                             <br />
                             <div class="row">
                                 <div class="col-1">
-                                    <input readonly [checked]="c{{." typ}}e="checkbox">
+                                    <input disabled [checked]="c{{." typ}}e="checkbox">
                                 </div>
                                 <div class="col" style="text-align: left"> <label>AADHAR CARD</label><br />
                                 </div>
@@ -158,7 +158,7 @@
                             <br />
                             <div class="row">
                                 <div class="col-1">
-                                    <input readonly [checked]="c{{." typ}}e="checkbox">
+                                    <input disabled [checked]="c{{." typ}}e="checkbox">
                                 </div>
                                 <div class="col" style="text-align: left"> <label>2 PASS PORT SIZE PHOTOS</label><br />
                                 </div>
@@ -170,37 +170,37 @@
 
                         <div class="col" style="text-align: left">
                             <div class="row">
-                                <div class="col-1"><input readonly [checked]="c{{." typ}}e="checkbox"></div>
+                                <div class="col-1"><input disabled [checked]="c{{." typ}}e="checkbox"></div>
                                 <div class="col"><label>ALLOTMENT ORDER</label>
                                 </div>
                             </div><br />
                             <div class="row">
-                                <div class="col-1"><input readonly [checked]="c{{." typ}}e="checkbox"></div>
+                                <div class="col-1"><input disabled [checked]="c{{." typ}}e="checkbox"></div>
                                 <div class="col"><label>JOINING REPORT</label>
                                 </div>
                             </div><br />
                             <div class="row">
-                                <div class="col-1"><input readonly [checked]="c{{." typ}}e="checkbox"></div>
+                                <div class="col-1"><input disabled [checked]="c{{." typ}}e="checkbox"></div>
                                 <div class="col"><label>RECEIPT OF CERTIFICATES FORM</label>
                                 </div>
                             </div><br />
                             <div class="row">
-                                <div class="col-1"><input readonly [checked]="c{{." typ}}e="checkbox"></div>
+                                <div class="col-1"><input disabled [checked]="c{{." typ}}e="checkbox"></div>
                                 <div class="col"><label>HALL TICKET</label>
                                 </div>
                             </div><br />
                             <div class="row">
-                                <div class="col-1"><input readonly [checked]="c{{." typ}}e="checkbox"></div>
+                                <div class="col-1"><input disabled [checked]="c{{." typ}}e="checkbox"></div>
                                 <div class="col"><label>RANK CARD</label>
                                 </div>
                             </div><br />
                             <div class="row">
-                                <div class="col-1"><input readonly [checked]="c{{." typ}}e="checkbox"></div>
+                                <div class="col-1"><input disabled [checked]="c{{." typ}}e="checkbox"></div>
                                 <div class="col"><label>6TH TO 10TH STUDY CERTIFICATES</label>
                                 </div>
                             </div><br />
                             <div class="row">
-                                <div class="col-1"><input readonly [checked]="c{{." typ}}e="checkbox"></div>
+                                <div class="col-1"><input disabled [checked]="c{{." typ}}e="checkbox"></div>
                                 <div class="col"><label>SSC MARKS MEMO</label>
                                 </div>
                             </div><br />
@@ -469,38 +469,55 @@
 
 
 
-<div style="height: 100vh;width: 98vw;">
-    <br />
-    <div style="display: flex;justify-content:center;">
-        <input [(ngModel)]="type" placeholder="start typing hallticket number ..." (click)="showData=false"
-            class="form-control shadow-none" style="width: 20vw;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;"
-            [(ngModel)]="type" />&nbsp;
-        <button class="btn btn-dark " (click)=" filterStudent()" style="font-size: 0.8rem;">Search <i
-                class='bx bx-search' style="font-weight:700"></i></button>
 
-    </div><br /><br />
+<div style="height: 100vh;width: 98vw;">
+
+    <div *ngIf="viewTop">
+        <br />
+        <div style="display: flex;justify-content:center;">
+            <input [(ngModel)]="type" placeholder="start typing hallticket number ..." (click)="showData=false"
+                class="form-control shadow-none" style="width: 20vw;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;"
+                [(ngModel)]="type" />&nbsp;
+            <button class="btn btn-dark " (click)=" filterStudent()" style="font-size: 0.8rem;">Search <i
+                    class='bx bx-search' style="font-weight:700"></i></button>
+        </div><br /><br />
+        <div *ngIf="studentdata.length>0">
+            <button class="btn btn-warning" (click)="openModal()">Click to proceed
+                further . </button><br />
+            <button class="btn btn-dark" (click)="edit()">Click to Edit</button>
+        </div>
+    </div>
 
     <div *ngIf="studentdata.length>0 else nostudent">
-        <div style="display: flex;justify-content:center ;height: 89vh;margin-bottom: 4rem;"
+        <div style="display: flex;justify-content:center;height: 89vh;margin-bottom: 4rem;"
             *ngFor="let c of studentdata">
-            <div style="height: 89vh;text-align: center;width:80vw;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;"
-                class="table-responsive"><br />
+            <div [ngStyle]="{'display':display}">
+
+                <button class="btn btn-warning" (click)="downloadPDF()">Print</button>
+                <button class="btn btn-danger"
+                    (click)="display='none';viewTop=true;type='';showData=false;studentdata=[]"> Close
+                </button>
+
+            </div>
+            <div style="text-align: center;"><br /><br /><br /><br />
+
+
                 <div class="row" style="margin: 0rem;padding: 0rem;">
-                    <div style="margin: 0rem;padding: 0rem;" class="col-2"><br />
+                    <div style="margin: 0rem;padding: 0rem;" class="col-3"><br />
                         <div
                             style="background-color: #1c1d63;color: white !important;padding: 0.7rem;border-bottom-right-radius: 60px;border-top-right-radius: 60px">
                             <h3>Estd : 1998 </h3>
                         </div>
                     </div>
                     <div class="col" style="display: flex;justify-content:center;align-items: center;max-height: 20vh;">
-                        <img src="assets/mainlogo.png" style="height: 20vh;width:10vw" />
+                        <img src="assets/mainlogo.png" style="height: 15vh;width:25vw" />
                     </div>
                     <div style="margin: 0rem;padding: 0rem;" class="col-2"><br />
                         <div
                             style="background-color: #1c1d63;color: white !important;padding-top: 0.7rem;border-bottom-left-radius: 60px;border-top-left-radius: 60px;text-align: right;">
                             <h3>
                                 <a style="text-decoration: none;color: white !important;" href="https://www.mits.ac.in/"
-                                    target="_blank">www.mits.ac.in</a>
+                                    target="_blank">www.mits.ac.in&nbsp;<br /></a>
 
                                 &nbsp;
                             </h3>
@@ -509,7 +526,7 @@
                 </div>
                 <br /><br />
                 <div
-                    style="display: flex;justify-content: center;align-items: center;color: #1c1d63;font-family: 'Montserrat', sans-serif;">
+                    style="display: flex;justify-content: center;align-items: center;color: #1c1d63;font-family: 'Montserrat', sans-serif;width:90vw ;">
                     <div style="margin: 0rem;padding:0rem;">
                         <h1 style="font-family: 'Poppins', sans-serif;">
                             Madanapalle Institute of Technology & Science</h1>
@@ -546,11 +563,11 @@
 
                         <h4 style="font-family: 'Times New Roman', Times, serif;font-weight: 600;">Admission
                             into
-                            {{c.course}}</h4>
+                            {{c.course}}</h4><br /><br />
                         <table class=" table table-bordered " style=" text-align:left">
                             <tbody>
                                 <tr>
-                                    <td>Branch Applied For </td>
+                                    <td style="width: 42vw;">Branch Applied For </td>
                                     <td>{{c.branchapplied}}</td>
                                 </tr>
                                 <tr>
@@ -571,7 +588,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <br />
+                        <br /><br /><br /><br /><br /><br />
                         <div>
                             <span style="font-size: 1rem;font-weight:600"> FOR OFFICE USE - CHECK
                                 LIST</span><br /><br />
@@ -579,42 +596,42 @@
 
                                 <div class="col" style="text-align: left">
                                     <div class="row">
-                                        <div class="col-1"><input readonly [checked]="c.allotmentorder" type="checkbox">
+                                        <div class="col-1"><input disabled [checked]="c.allotmentorder" type="checkbox">
                                         </div>
                                         <div class="col"><label>ALLOTMENT ORDER</label>
                                         </div>
                                     </div><br />
                                     <div class="row">
-                                        <div class="col-1"><input readonly [checked]="c.joiningreport" type="checkbox">
+                                        <div class="col-1"><input disabled [checked]="c.joiningreport" type="checkbox">
                                         </div>
                                         <div class="col"><label>JOINING REPORT</label>
                                         </div>
                                     </div><br />
                                     <div class="row">
-                                        <div class="col-1"><input readonly [checked]="c.recieptofcert" type="checkbox">
+                                        <div class="col-1"><input disabled [checked]="c.recieptofcert" type="checkbox">
                                         </div>
                                         <div class="col"><label>RECEIPT OF CERTIFICATES FORM</label>
                                         </div>
                                     </div><br />
                                     <div class="row">
-                                        <div class="col-1"><input readonly [checked]="c.hallticketcert" type="checkbox">
+                                        <div class="col-1"><input disabled [checked]="c.hallticketcert" type="checkbox">
                                         </div>
                                         <div class="col"><label>HALL TICKET</label>
                                         </div>
                                     </div><br />
                                     <div class="row">
-                                        <div class="col-1"><input readonly [checked]="c.rankcard" type="checkbox"></div>
+                                        <div class="col-1"><input disabled [checked]="c.rankcard" type="checkbox"></div>
                                         <div class="col"><label>RANK CARD</label>
                                         </div>
                                     </div><br />
                                     <div class="row">
-                                        <div class="col-1"><input readonly [checked]="c.sscmarksmemo" type="checkbox">
+                                        <div class="col-1"><input disabled [checked]="c.sscmarksmemo" type="checkbox">
                                         </div>
                                         <div class="col"><label>SSC MARKS MEMO</label>
                                         </div>
                                     </div><br />
                                     <div class="row">
-                                        <div class="col-1"><input readonly [checked]="c.sixtencert" type="checkbox">
+                                        <div class="col-1"><input disabled [checked]="c.sixtencert" type="checkbox">
                                         </div>
                                         <div class="col"><label>6TH TO 10TH STUDY CERTIFICATES</label>
                                         </div>
@@ -623,7 +640,7 @@
                                 <div class="col">
                                     <div class="row">
                                         <div class="col-1">
-                                            <input readonly [checked]="c.intermarksmemo" type="checkbox">
+                                            <input disabled [checked]="c.intermarksmemo" type="checkbox">
                                         </div>
                                         <div class="col" style="text-align: left"> <label>INTER MARKS MEMO</label><br />
                                         </div>
@@ -631,7 +648,7 @@
                                     <br />
                                     <div class="row">
                                         <div class="col-1">
-                                            <input readonly [checked]="c.intercert" type="checkbox">
+                                            <input disabled [checked]="c.intercert" type="checkbox">
                                         </div>
                                         <div class="col" style="text-align: left"> <label>INTER TC & STUDY
                                                 CERTIFICATES</label><br />
@@ -640,7 +657,7 @@
                                     <br />
                                     <div class="row">
                                         <div class="col-1">
-                                            <input readonly [checked]="c.ugpc" type="checkbox">
+                                            <input disabled [checked]="c.ugpc" type="checkbox">
                                         </div>
                                         <div class="col" style="text-align: left"> <label>UG-PC</label><br />
                                         </div>
@@ -648,7 +665,7 @@
                                     <br />
                                     <div class="row">
                                         <div class="col-1">
-                                            <input readonly [checked]="c.ugcert" type="checkbox">
+                                            <input disabled [checked]="c.ugcert" type="checkbox">
                                         </div>
                                         <div class="col" style="text-align: left"> <label>UG TC & STUDY
                                                 CERTIFICATES</label><br />
@@ -657,7 +674,7 @@
                                     <br />
                                     <div class="row">
                                         <div class="col-1">
-                                            <input readonly [checked]="c.photos" type="checkbox">
+                                            <input disabled [checked]="c.photos" type="checkbox">
                                         </div>
                                         <div class="col" style="text-align: left"> <label>2 PASS PORT SIZE
                                                 PHOTOS</label><br />
@@ -666,7 +683,7 @@
                                     <br />
                                     <div class="row">
                                         <div class="col-1">
-                                            <input readonly [checked]="c.aadharcard" type="checkbox">
+                                            <input disabled [checked]="c.aadharcard" type="checkbox">
                                         </div>
                                         <div class="col" style="text-align: left"> <label>AADHAR CARD</label><br />
                                         </div>
@@ -674,7 +691,7 @@
                                     <br />
                                     <div class="row">
                                         <div class="col-1">
-                                            <input readonly [checked]="c.othercert" type="checkbox">
+                                            <input disabled [checked]="c.othercert" type="checkbox">
                                         </div>
                                         <div class="col" style="text-align: left"> <label>OTHERS/CAST/INCOME/RATION
                                                 CARD</label><br />
@@ -695,10 +712,10 @@
                             <table class="table table-bordered" style="text-align:left ;">
                                 <tbody>
                                     <tr>
-                                        <td>Full Name of the Candidate (In Capitals):<br />
+                                        <td style="width: 42vw;">Full Name of the Candidate (In Capitals)<br />
                                             (As per SSC)
                                         </td>
-                                        <td>{{c.fullname}}</td>
+                                        <td>{{c.fullname | uppercase}}</td>
                                     </tr>
                                     <tr>
                                         <td> Date of Birth (DD/MM/YY)
@@ -728,11 +745,14 @@
 
 
                                 </tbody>
-                            </table>
+                            </table><br /><br />
+                            <div class="border p-2 " style="font-size: 1rem;color: #1c1d63;;"> <strong>
+
+                                    Address</strong></div>
                             <table class="table table-bordered">
                                 <tbody>
-                                    <tr>
-                                        <td>Present Address</td>
+                                    <tr style="font-weight: 600;">
+                                        <td style="width: 42vw;">Present Address</td>
                                         <td>Permanent Address
                                         </td>
                                     </tr>
@@ -791,12 +811,14 @@
                                         </td>
                                     </tr>
                                 </tbody>
-                            </table>
+                            </table><br /><br /><br /><br />
+                            <div class="border p-2 " style="font-size: 1rem;color: #1c1d63;;"> <strong>
 
+                                    Personal Details</strong></div>
                             <table class="table table-bordered" style="text-align:left ;">
                                 <tbody>
                                     <tr>
-                                        <td>
+                                        <td style="width: 42vw;">
                                             <table class="table table-borderless">
                                                 <tr>
                                                     <td>Father's mobile number</td>
@@ -835,13 +857,13 @@
                                             <table class="table table-borderless">
                                                 <tbody>
                                                     <tr>
-                                                        <td>Nationality : {{c.nationality}}</td>
+                                                        <td><strong>Nationality :</strong> {{c.nationality}}</td>
 
-                                                        <td>Religion : {{c.religion}}</td>
+                                                        <td><strong>Religion :</strong> {{c.religion}}</td>
 
-                                                        <td>Caste : {{c.caste}}</td>
+                                                        <td><strong>Caste :</strong> {{c.caste}}</td>
 
-                                                        <td>Category : {{c.category}}</td>
+                                                        <td><strong>Category :</strong> {{c.category}}</td>
 
                                                     </tr>
                                                 </tbody>
@@ -854,20 +876,22 @@
 
 
 
-
-                            Details of Educational Qualifications<br />
+                            <br />
+                            <div class="border p-2 " style="font-size: 1rem;color: #1c1d63;;"> <strong>Details of
+                                    Educational
+                                    Qualifications</strong></div>
                             <table class="table  table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td>Level</td>
-                                        <td>School / College Name</td>
-                                        <td>Group / Branch</td>
-                                        <td>Year of passing</td>
-                                        <td>Board / University</td>
-                                        <td>Division / Grade % of Marks</td>
+                                        <td style="font-weight: 600;">Level</td>
+                                        <td style="font-weight: 600;">School / College Name</td>
+                                        <td style="font-weight: 600;">Group / Branch</td>
+                                        <td style="font-weight: 600;">Year of passing</td>
+                                        <td style="font-weight: 600;">Board / University</td>
+                                        <td style="font-weight: 600;">Division / Grade % of Marks</td>
                                     </tr>
                                     <tr>
-                                        <td>SSC</td>
+                                        <td style="font-weight: 600;">SSC</td>
                                         <td>{{c.schoolorcollegename}}</td>
                                         <td>{{c.sscgrouporbranch}}</td>
                                         <td>{{c.sscyearofpassing}}</td>
@@ -875,7 +899,7 @@
                                         <td>{{c.sscgrade}}</td>
                                     </tr>
                                     <tr>
-                                        <td>Inter</td>
+                                        <td style="font-weight: 600;">Inter</td>
                                         <td>{{c.interschoolorcollegename}}</td>
                                         <td>{{c.intergrouporbranch}}</td>
                                         <td>{{c.interyearofpassing}}</td>
@@ -883,7 +907,7 @@
                                         <td>{{c.intergrade}}</td>
                                     </tr>
                                     <tr>
-                                        <td>UG</td>
+                                        <td style="font-weight: 600;">UG</td>
                                         <td>{{c.ugschoolorcollegename}}</td>
                                         <td>{{c.uggrouporbranch}}</td>
                                         <td>{{c.ugyearofpassing}}</td>
@@ -891,7 +915,7 @@
                                         <td>{{c.uggrade}}</td>
                                     </tr>
                                     <tr>
-                                        <td>PG</td>
+                                        <td style="font-weight: 600;">PG</td>
                                         <td>{{c.pgschoolorcollegename}}</td>
                                         <td>{{c.pggrouporbranch}}</td>
                                         <td>{{c.pgyearofpassing}}</td>
@@ -899,7 +923,7 @@
                                         <td>{{c.pggrade}}</td>
                                     </tr>
                                     <tr>
-                                        <td>Any Other</td>
+                                        <td style="font-weight: 600;">Any Other</td>
                                         <td>{{c.otherschoolorcollegename}}</td>
                                         <td>{{c.othergrouporbranch}}</td>
                                         <td>{{c.otheryearofpassing}}</td>
@@ -908,10 +932,10 @@
                                     </tr>
 
                                 </tbody>
-                            </table>
+                            </table><br />
+                            <div class="border p-2 " style="font-size: 1rem;color: #1c1d63;;"> <strong>
 
-
-                            Details of Qualifying Entrance Examination
+                                    Details of Qualifying Entrance Examination</strong></div>
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
@@ -935,14 +959,20 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <br />
+                            <div style="text-align: left;">
 
-
-                            Occupation of the Father / Guardian : {{c.fatheroccupation}}<br />
-                            Annual Income of the Father / Guardian :{{c.fatherannualincome}}
+                                <strong>Occupation of the Father / Guardian :</strong> {{c.fatheroccupation}}<br />
+                                <strong> Annual Income of the Father / Guardian : </strong> {{c.fatherannualincome}}
+                            </div>
                         </div>
+                        <br /><br />
+                        <div>
+                            <span style="float: left;"> Signature of Parent
+                            </span>
+                            <span style="float: right;"> Signature of Candidate</span>
 
-                        Signature of Parent :
-                        Signature of Candidate :
+                        </div>
                     </div>
                 </div>
             </div>

@@ -19,7 +19,7 @@
     <br /><br />
 
     <form class="table-responsive logo" [formGroup]="registration" (ngSubmit)="register()"
-        style="padding: 1.5rem;font-size: 0.9rem;padding-top: 0rem;height: 90vh;    ">
+        style="padding: 1.5rem;font-size: 0.9rem;padding-top: 0rem;height: 90vh;">
 
         <label style="font-weight:500">Hall Ticket Number <strong style="color: crimson;">*</strong></label><br />
         <input formControlName="hallticket" (click)="errorStatus=false" [readonly]="optstatus"

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminviewComponent } from './adminview/adminview.component';
+import { EditdetailsComponent } from './editdetails/editdetails.component';
 import { FormComponent } from './form/form.component';
 import { LoginpageComponent } from './loginpage/loginpage.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: "submittedresponse", component: ResponseComponent },
   { path: "admin", component: AdminviewComponent },
   { path: "login", component: LoginpageComponent },
+  { path: "edit", component: EditdetailsComponent }
 ];
 
 @NgModule({

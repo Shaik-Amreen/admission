@@ -8,10 +8,16 @@ input {
 
 td {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     padding-left: 2rem;
 }
 
 div {
     font-size: 0.8rem;
+}
+
+@media print {
+    body {
+        print-color-adjust: exact;
+    }
 }

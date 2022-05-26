@@ -1,0 +1,217 @@
+<div style="width:100%;position: fixed;">
+    <div class="back">
+        <div class="row">
+            <!-- <div class="col-2"
+                    style="display: flex;justify-content: center;align-self: center;margin-left: 2rem;padding: 0.5rem;">
+                    <img src="assets/logo.png" style="height:90px;width:90px" />
+                </div> -->
+            <div class="col"
+                style="text-align:center;color:white;display: flex;justify-content: center;align-self: center;">
+                <div>
+                    <span style="font-family: 'Poppins', sans-serif;">MADANAPALLE INSTITUTE OF TECHNOLOGY AND
+                        SCIENCE</span><br />
+                    <strong style="font-size:0.7rem">UGC - AUTONOMOUS , ACCREDITED BY NAAC WITH A+ GRADE</strong><br />
+                    <span style="font-family: 'Poppins', sans-serif;">ADMISSION FORM</span><br />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <form class=" logo row" [formGroup]="admissionform" (ngSubmit)="submit()"
+        style="padding: 1.5rem;font-size: 0.9rem;padding-top: 0rem;">
+        <div class="col table-responsive" style="height:90vh">
+            <span *ngFor="let c of formdata">
+                <span *ngIf="c.label">
+                    <strong *ngIf="c.combine" style="color:#a5081a">{{c.label}}</strong>
+                    <label style="font-weight:500" *ngIf="!c.combine">{{c.label}}
+                        <sup style="color:#a5081a" *ngIf="c.required"><strong style="font-weight: 900">*</strong></sup>
+                    </label><br />
+                </span>
+                <div style="margin-left:0.7rem" *ngIf="c.combine else single">
+                    <span style="margin-left: 1rem;"><br />
+                        <span *ngFor="let d of c.content">
+                            <label style="font-weight: 500;">{{d.label}}</label>&nbsp;
+                            <sup style="color:#a5081a" *ngIf="d.required"><strong
+                                    style="font-weight: 900">*</strong></sup>
+                            <input class="form-control shadow-none " type="{{d.type}}" formControlName="{{d.formname}}"
+                                *ngIf="d.tag=='input'" />
+                            <select formControlName="{{d.formname}}" class="form-control shadow-none"
+                                *ngIf="d.tag=='select'">
+                                <option value="" selected>Please selecadmissionform.value</option>
+                                <option *ngFor="let o of d.options" value="{{o.value}}">{{o.view}}</option>
+                            </select>
+
+                            <span *ngIf="d.content else one"><br />
+                                <div style="margin-left:1rem" *ngFor="let e of d.content"><br />
+                                    <span>{{e.label}}
+                                        <sup style="color:#a5081a" *ngIf="e.required"><strong
+                                                style="font-weight: 900">*</strong></sup>
+                                    </span>
+                                    <input class="form-control shadow-none" formControlName="{{e.formname}}"
+                                        type="{{e.type}}" *ngIf="e.tag=='input'" />
+                                    <select class="form-control shadow-none" formControlName="{{e.formname}}"
+                                        *ngIf="e.tag=='select'">
+                                        <option value="" selected>Please selecadmissionform.value</option>
+                                        <option *ngFor="let f of e.options" value="{{f.value}}">{{f.view}}</option>
+                                    </select>
+                                    <span style="font-weight:500 ;color:#a5081a;font-size:0.8rem"
+                                        *ngIf="admissionform.controls[e.formname].errors?.required && errorstatus">Please
+                                        fill above field</span>
+                                </div>
+                            </span>
+                            <ng-template #one>
+                                <span style="font-weight:500 ;color:#a5081a;font-size:0.8rem"
+                                    *ngIf="admissionform.controls[d.formname].errors?.required && errorstatus">Please
+                                    fill above field</span>
+                            </ng-template>
+                            <br />
+                        </span>
+                    </span>
+                </div>
+                <ng-template #single>
+                    <input class="form-control shadow-none" formControlName="{{c.formname}}" type="{{c.type}}" />
+                    <span style="font-weight:500 ;color:#a5081a;font-size:0.8rem"
+                        *ngIf="admissionform.controls[c.formname].errors?.required && errorstatus">Please
+                        fill above field</span>
+                    <br />
+                </ng-template>
+            </span>
+        </div>
+
+        <div class="col"><br /><br /><br />
+            <span style="font-size: 1rem;font-weight:600;color: #a5081a;"> FOR OFFICE USE - CHECK
+                LIST</span><br /><br />
+            <div class="row  shadow">
+
+                <div class="col" style="text-align: left"><br />
+                    <div class="row">
+                        <div class="col-1"><input formControlName="allotmentorder"
+                                [checked]="admissionform.value.allotmentorder" type="checkbox">
+                        </div>
+                        <div class="col"><label>ALLOTMENT ORDER</label>
+                        </div>
+                    </div><br />
+                    <div class="row">
+                        <div class="col-1"><input formControlName="joiningreport"
+                                [checked]="admissionform.value.joiningreport" type="checkbox">
+                        </div>
+                        <div class="col"><label>JOINING REPORT</label>
+                        </div>
+                    </div><br />
+                    <div class="row">
+                        <div class="col-1"><input formControlName="recieptofcert"
+                                [checked]="admissionform.value.recieptofcert" type="checkbox">
+                        </div>
+                        <div class="col"><label>RECEIPT OF CERTIFICATES FORM</label>
+                        </div>
+                    </div><br />
+                    <div class="row">
+                        <div class="col-1"><input formControlName="hallticketcert"
+                                [checked]="admissionform.value.hallticketcert" type="checkbox">
+                        </div>
+                        <div class="col"><label>HALL TICKET</label>
+                        </div>
+                    </div><br />
+                    <div class="row">
+                        <div class="col-1"><input formControlName="rankcard" [checked]="admissionform.value.rankcard"
+                                type="checkbox"></div>
+                        <div class="col"><label>RANK CARD</label>
+                        </div>
+                    </div><br />
+                    <div class="row">
+                        <div class="col-1"><input formControlName="sscmarksmemo"
+                                [checked]="admissionform.value.sscmarksmemo" type="checkbox">
+                        </div>
+                        <div class="col"><label>SSC MARKS MEMO</label>
+                        </div>
+                    </div><br />
+                    <div class="row">
+                        <div class="col-1"><input formControlName="sixtencert"
+                                [checked]="admissionform.value.sixtencert" type="checkbox">
+                        </div>
+                        <div class="col"><label>6TH TO 10TH STUDY CERTIFICATES</label>
+                        </div>
+                    </div><br />
+                </div>
+                <div class="col"><br />
+                    <div class="row">
+                        <div class="col-1">
+                            <input formControlName="intermarksmemo" [checked]="admissionform.value.intermarksmemo"
+                                type="checkbox">
+                        </div>
+                        <div class="col" style="text-align: left"> <label>INTER MARKS MEMO</label><br />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-1">
+                            <input formControlName="intercert" [checked]="admissionform.value.intercert"
+                                type="checkbox">
+                        </div>
+                        <div class="col" style="text-align: left"> <label>INTER TC & STUDY
+                                CERTIFICATES</label><br />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-1">
+                            <input formControlName="ugpc" [checked]="admissionform.value.ugpc" type="checkbox">
+                        </div>
+                        <div class="col" style="text-align: left"> <label>UG-PC</label><br />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-1">
+                            <input formControlName="ugcert" [checked]="admissionform.value.ugcert" type="checkbox">
+                        </div>
+                        <div class="col" style="text-align: left"> <label>UG TC & STUDY
+                                CERTIFICATES</label><br />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-1">
+                            <input formControlName="photos" [checked]="admissionform.value.photos" type="checkbox">
+                        </div>
+                        <div class="col" style="text-align: left"> <label>2 PASS PORT SIZE
+                                PHOTOS</label><br />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-1">
+                            <input formControlName="aadharcard" [checked]="admissionform.value.aadharcard"
+                                type="checkbox">
+                        </div>
+                        <div class="col" style="text-align: left"> <label>AADHAR CARD</label><br />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-1">
+                            <input formControlName="othercert" [checked]="admissionform.value.othercert"
+                                type="checkbox">
+                        </div>
+                        <div class="col" style="text-align: left"> <label>OTHERS/CAST/INCOME/RATION
+                                CARD</label><br />
+                        </div>
+                    </div>
+                    <br />
+
+
+
+
+                </div>
+
+            </div><br />
+            <div style="display: flex;">
+                <button type="submit" class="btn btn-success">SUBMIT</button>&nbsp;
+                <button type="button" class="btn btn-danger">CLOSE</button>
+            </div>
+        </div>
+        <br />
+
+    </form>
+</div>
