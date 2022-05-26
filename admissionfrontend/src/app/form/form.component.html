@@ -18,14 +18,14 @@
     </div>
 
 
-    <form class="table-responsive logo" style="padding: 1.5rem;font-size: 0.9rem;padding-top: 0rem;height: 90vh;">
+    <form class="table-responsive logo" [formGroup]="admissionform" (ngSubmit)="submit()"
+        style="padding: 1.5rem;font-size: 0.9rem;padding-top: 0rem;height: 90vh;">
 
         <span *ngFor="let c of formdata">
             <span *ngIf="c.label">
                 <strong *ngIf="c.combine" style="color:#a5081a">{{c.label}}</strong>
                 <label style="font-weight:500" *ngIf="!c.combine">{{c.label}}
                     <sup style="color:#a5081a" *ngIf="c.required"><strong style="font-weight: 900">*</strong></sup>
-
                 </label><br />
             </span>
             <div style="margin-left:0.7rem" *ngIf="c.combine else single">
@@ -33,32 +33,50 @@
                     <span *ngFor="let d of c.content">
                         <label style="font-weight: 500;">{{d.label}}</label>&nbsp;
                         <sup style="color:#a5081a" *ngIf="d.required"><strong style="font-weight: 900">*</strong></sup>
-                        <input class="form-control shadow-none" type="{{d.type}}" *ngIf="d.tag=='input'" />
-                        <select class="form-control shadow-none" *ngIf="d.tag=='select'">
+                        <input class="form-control shadow-none" type="{{d.type}}" formControlName="{{d.formname}}"
+                            *ngIf="d.tag=='input'" />
+                        <select formControlName="{{d.formname}}" class="form-control shadow-none"
+                            *ngIf="d.tag=='select'">
                             <option value="" disabled selected>Please select</option>
                             <option *ngFor="let o of d.options" value="{{o.value}}">{{o.view}}</option>
                         </select>
-                        <span *ngIf="d.content"><br />
+
+                        <span *ngIf="d.content else one"><br />
                             <div style="margin-left:1rem" *ngFor="let e of d.content"><br />
                                 <span>{{e.label}}
                                     <sup style="color:#a5081a" *ngIf="e.required"><strong
                                             style="font-weight: 900">*</strong></sup>
                                 </span>
-                                <input class="form-control shadow-none" type="{{e.type}}" *ngIf="e.tag=='input'" />
-                                <select class="form-control shadow-none" *ngIf="e.tag=='select'">
+                                <input class="form-control shadow-none" formControlName="{{e.formname}}"
+                                    type="{{e.type}}" *ngIf="e.tag=='input'" />
+                                <select class="form-control shadow-none" formControlName="{{e.formname}}"
+                                    *ngIf="e.tag=='select'">
                                     <option value="" disabled selected>Please select</option>
                                     <option *ngFor="let f of e.options" value="{{f.value}}">{{f.view}}</option>
                                 </select>
+                                <span style="font-weight:500 ;color:#a5081a;font-size:0.8rem"
+                                    *ngIf="admissionform.controls[e.formname].errors?.required && errorstatus">Please
+                                    fill above field</span>
                             </div>
                         </span>
+                        <ng-template #one>
+                            <span style="font-weight:500 ;color:#a5081a;font-size:0.8rem"
+                                *ngIf="admissionform.controls[d.formname].errors?.required && errorstatus">Please
+                                fill above field</span>
+                        </ng-template>
                         <br />
                     </span>
                 </span>
             </div>
             <ng-template #single>
-                <input class="form-control shadow-none" type="{{c.type}}" />
+                <input class="form-control shadow-none" formControlName="{{c.formname}}" type="{{c.type}}" />
+                <span style="font-weight:500 ;color:#a5081a;font-size:0.8rem"
+                    *ngIf="admissionform.controls[c.formname].errors?.required && errorstatus">Please
+                    fill above field</span>
                 <br />
             </ng-template>
         </span>
+        <br />
+        <button type="submit" class="btn btn-success">Submit</button>
     </form>
 </div>

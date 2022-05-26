@@ -1,0 +1,57 @@
+<div style="width:100%;position: fixed;">
+    <div class="back">
+        <div class="row">
+            <!-- <div class="col-2"
+                    style="display: flex;justify-content: center;align-self: center;margin-left: 2rem;padding: 0.5rem;">
+                    <img src="assets/logo.png" style="height:90px;width:90px" />
+                </div> -->
+            <div class="col"
+                style="text-align:center;color:white;display: flex;justify-content: center;align-self: center;">
+                <div>
+                    <span style="font-family: 'Poppins', sans-serif;">MADANAPALLE INSTITUTE OF TECHNOLOGY AND
+                        SCIENCE</span><br />
+                    <strong style="font-size:0.7rem">UGC - AUTONOMOUS , ACCREDITED BY NAAC WITH A+ GRADE</strong><br />
+                    <span style="font-family: 'Poppins', sans-serif;">REGISTRATION FORM</span><br />
+                </div>
+            </div>
+        </div>
+    </div>
+    <br /><br />
+
+    <form class="table-responsive logo" [formGroup]="registration" (ngSubmit)="register()"
+        style="padding: 1.5rem;font-size: 0.9rem;padding-top: 0rem;height: 90vh;    ">
+
+        <label style="font-weight:500">Hall Ticket Number <strong style="color: crimson;">*</strong></label><br />
+        <input formControlName="hallticket" (click)="errorStatus=false" [readonly]="optstatus"
+            class="form-control shadow-none" />
+        <span *ngIf="registration.controls.hallticket.errors?.required && errorStatus"
+            style="color:crimson;font-size:0.8rem;font-weight: 500;">Please fill hall ticket
+            number</span>
+        <br />
+        <label style="font-weight:500">Mail Id <strong style="color: crimson;">*</strong></label><br />
+        <input (click)="errorStatus=false" formControlName="otpmail" [readonly]="optstatus"
+            class="form-control shadow-none" />
+
+        <span *ngIf="errorStatus" style="color:crimson;font-size:0.8rem">
+            <span style="font-weight:500 ;" *ngIf="registration.controls.otpmail.errors?.required">Please fill Mail
+                Id</span>
+            <span style="font-weight:500 ;" *ngIf="registration.controls.otpmail.errors?.pattern">Please fill valid Mail
+                Id</span>
+        </span>
+        <br />
+        <span *ngIf="optstatus">
+            <label style=" font-weight:500"> One time password <strong style="color: crimson;">*</strong></label><br />
+            <input (click)="otperror=''" formControlName="otp" placeholder="please check your mail"
+                class="form-control shadow-none" />
+            <span style="font-weight:500 ;color: crimson;font-size: 0.8rem;">{{otperror}}</span><br /><br />
+        </span>
+        <div class="text-center">
+            <button type="submit" *ngIf="!optstatus" class="btn btn-success" style="padding:0.5rem;"><span
+                    style="font-weight:500 ;">Register</span></button>
+            <button type="button" (click)="verifyopt()" *ngIf="optstatus" class="btn btn-success"
+                style="padding:0.5rem;"><span style="font-weight:500 ;">Verify OTP</span></button>
+        </div>
+
+    </form>
+
+</div>

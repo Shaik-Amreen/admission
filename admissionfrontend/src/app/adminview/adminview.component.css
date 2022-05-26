@@ -1,1 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+input {
+    font-size: 0.8rem;
+}
+
+td {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    padding-left: 2rem;
+}
+
+div {
+    font-size: 0.8rem;
+}

@@ -17,33 +17,34 @@ const encrypt = (data) => {
 
 
 stdregister = async (req, res) => {
-    data1 = await studentdata.findOne({ "hallticket": req.body.hallticket }).lean();
+    let data1 = await studentdata.findOne({ "hallticket": req.body.hallticket }).lean();
     let otp = randomstring.generate(6)
+    req.body.otp = otp
     if (!data1) {
-        req.body.otp = otp
+
         let mailDetails = {
             from: "Admission Team",
-            to: [req.body.mail],
+            to: req.body.otpmail,
             subject: `otp verification to register for MITS`,
             html: `Your register otp is ${req.body.otp}`
         }
-        mail(req.body, mailDetails)
+        mail(mailDetails)
         studentdata.create(req.body, (err) => {
             if (!err) {
                 res.send({ message: "success" })
             }
         })
     }
+
     else {
-        if (data1[0].dob == "") {
-            req.body.otp = otp
+        if (data1.gender == '') {
             let mailDetails = {
                 from: "Admission Team",
-                to: [req.body.mail],
+                to: req.body.otpmail,
                 subject: `otp verification to register for MITS`,
                 html: `Your register otp is ${req.body.otp}`
             }
-            mail(req.body, mailDetails)
+            mail(mailDetails)
             studentdata.updateOne({ "hallticket": req.body.hallticket }, { $set: req.body }, (err) => {
                 if (!err) {
                     res.send({ message: "success" })
@@ -58,21 +59,25 @@ stdregister = async (req, res) => {
 
 verifyopt = async (req, res) => {
     data1 = await studentdata.findOne({ "hallticket": req.body.hallticket }).lean();
-    if (data1.otp==req.body.otp) {
-        res.send("studentVerified")
+    if (data1 && data1.otp == req.body.otp) {
+        res.send({ message: "success" })
     }
+    else {
+        res.send({ message: "error" })
+    }
+
 }
 
-stdregistersubmit = async(req,res)=>{
+stdregistersubmit = async (req, res) => {
     data1 = await studentdata.findOne({ "hallticket": req.body.hallticket }).lean();
-    if(data){
+    if (data1) {
         let mailDetails = {
             from: "Admission Team",
-            to: [req.body.mail],
+            to: [req.body.otpmail],
             subject: `Successfully Registered`,
             html: `You have successfully registered for MITS`
         }
-        mail(req.body, mailDetails)
+        mail(mailDetails)
         studentdata.updateOne({ "hallticket": req.body.hallticket }, { $set: req.body }, (err) => {
             if (!err) {
                 res.send({ message: "success" })
@@ -106,9 +111,10 @@ mail = (mailDetails) => {
 }
 
 getstudent = async (req, res) => {
-    data2 = await studentdata.find({ "hallticket": req.body.hallticket, }).lean();
+    data2 = await studentdata.find({ hallticket: req.body.hallticket }).lean();
     res.send({ data: data2 })
 }
+
 
 // poststudents = (req, res) => {
 //     studentdata.create(req.body, (err) => {
@@ -126,15 +132,15 @@ adminlogin = async (req, res) => {
         );
 }
 
-createadmin = async (req,res)=>{
+createadmin = async (req, res) => {
     data1 = await admin.findOne({ "mail": req.body.mail }).lean();
-    if(!data1){
-        admin.create(req.body,(err,data)=>{
-            if(data){
-                res.send({message:"success"})
+    if (!data1) {
+        admin.create(req.body, (err, data) => {
+            if (data) {
+                res.send({ message: "success" })
             }
         })
     }
 }
 
-module.exports = { createadmin, adminlogin,getstudent,stdregistersubmit,verifyopt,stdregister}
+module.exports = { createadmin, adminlogin, getstudent, stdregistersubmit, verifyopt, stdregister }

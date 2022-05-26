@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -7,17 +9,15 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
+  errorstatus: any = false
   formdata: any = [
-
-
-
 
     {
       combine: true, content: [
         { formname: "fullname", type: "text", tag: "input", required: true, validations: [Validators.required], label: "Full Name of the Candidate (In capitals)" },
 
         { formname: "studentphoto", type: "file", tag: "input", required: true, validations: [Validators.required], label: "Passport size photo" },
-        { formname: "academicyear", type: "text", tag: "input", required: true, validations: [Validators.required, Validators.min(2020)], label: "Academic year" },
+        { formname: "academicyear", type: "number", tag: "input", required: true, validations: [Validators.required, Validators.min(2020)], label: "Academic year" },
 
 
         {
@@ -113,7 +113,7 @@ export class FormComponent implements OnInit {
     {
       combine: true, label: "Details of Educational Qualifications", content: [
         {
-          label: "SSC",  content: [
+          label: "SSC", content: [
             { formname: "schoolorcollegename", label: "School / College Name", required: true, validations: [Validators.required], type: "text", tag: "input" },
             { formname: "sscgrouporbranch", label: "Group / Branch", required: true, validations: [Validators.required], type: "text", tag: "input" },
             { formname: "sscyearofpassing", label: "Year of passing", required: true, validations: [Validators.required], type: "number", tag: "input" },
@@ -131,7 +131,7 @@ export class FormComponent implements OnInit {
           ], combine: true
         },
         {
-          label: "UG",  content: [
+          label: "UG", content: [
             { formname: "ugschoolorcollegename", label: "School / College Name", type: "text", tag: "input" },
             { formname: "uggrouporbranch", label: "Group / Branch", type: "text", tag: "input" },
             { formname: "ugyearofpassing", label: "Year of passing", type: "number", tag: "input" },
@@ -140,7 +140,7 @@ export class FormComponent implements OnInit {
           ], combine: true
         },
         {
-          label: "PG",content: [
+          label: "PG", content: [
             { formname: "pgschoolorcollegename", label: "School / College Name", type: "text", tag: "input" },
             { formname: "pggrouporbranch", label: "Group / Branch", type: "text", tag: "input" },
             { formname: "pgyearofpassing", label: "Year of passing", type: "number", tag: "input" },
@@ -163,7 +163,7 @@ export class FormComponent implements OnInit {
     {
       label: "Details of Qualifying Entrance Examinations", combine: true, content: [
         {
-          formname: "entranceexam", label: "Entrance exam", tag: "select", options: [
+          formname: "entranceexam", label: "Entrance exam", validations: [Validators.required], tag: "select", options: [
             { value: "eamcet", view: "EAMCET" },
             { value: "icet", view: "ICET" },
             { value: "other", view: "Other" }
@@ -176,28 +176,29 @@ export class FormComponent implements OnInit {
           ]
         },
         { formname: "year", label: "Year", required: true, validations: [Validators.required], type: "text", tag: "input" },
-        { formname: "hallticket", type: "text", tag: "input", required: true, validations: [Validators.required], label: "Hall ticket number" },
         { formname: "rank", type: "text", tag: "input", required: true, validations: [Validators.required], label: "Rank" },
       ]
     },
 
     { formname: "rollno", label: "Roll number" },
     { formname: "fatheroccupation", label: "Occupation of the Father / Guardian  ", required: true, validations: [Validators.required], type: "text", tag: "input" },
-    { formname: "fatherannualincome", label: "Annual Income of the Father / Guardian  ", required: true }
+    { formname: "fatherannualincome", label: "Annual Income of the Father / Guardian  ", required: true, validations: [Validators.required], type: "number", }
 
   ]
 
-  admissionform: FormGroup
-  constructor() {
+  admissionform: any = FormGroup
+  constructor(private http: HttpClient, private route: Router) {
     let admissiondata: any = {}
     this.formdata.forEach((c: any) => {
       if (c.combine) {
         c.content.forEach((d: any) => {
-          admissiondata[d.formname] = new FormControl('', d.validations)
           if (d.combine) {
             d.content.forEach((e: any) => {
               admissiondata[e.formname] = new FormControl('', e.validations)
             })
+          }
+          else {
+            admissiondata[d.formname] = new FormControl('', d.validations)
           }
         })
       }
@@ -206,8 +207,49 @@ export class FormComponent implements OnInit {
       }
     });
 
+    admissiondata.allotmentorder = new FormControl(false)
+    admissiondata.joiningreport = new FormControl(false)
+    admissiondata.recieptofcert = new FormControl(false)
+    admissiondata.hallticketcert = new FormControl(false)
+    admissiondata.rankcard = new FormControl(false)
+    admissiondata.sscmarksmemo = new FormControl(false)
+    admissiondata.sixtencert = new FormControl(false)
+
+    admissiondata.intermarksmemo = new FormControl(false)
+    admissiondata.intercert = new FormControl(false)
+    admissiondata.ugpc = new FormControl(false)
+    admissiondata.ugcert = new FormControl(false)
+    admissiondata.photos = new FormControl(false)
+    admissiondata.aadharcard = new FormControl(false)
+    admissiondata.othercert = new FormControl(false)
+
     this.admissionform = new FormGroup(admissiondata)
-    console.log(this.admissionform.value)
+  }
+
+  submit() {
+    console.log(this.admissionform)
+    if (this.admissionform.status == 'VALID') {
+      this.admissionform.value.hallticket = sessionStorage.getItem('hallticket')
+      this.admissionform.value.otpmail = sessionStorage.getItem('otpmail')
+      this.http.post('http://localhost:4000/stdregistersubmit', this.admissionform.value).subscribe(
+        res => {
+          this.route.navigate(['/submittedresponse'])
+        },
+        err => console.log(err)
+      )
+    }
+    else {
+      this.errorstatus = true
+      // let a = '';
+      // Object.keys(this.admissionform.controls).forEach(key => {
+      //   const controlErrors = this.admissionform.get(key).errors;
+      //   if (controlErrors != null && a == '') {
+      //     a = key
+      //     // console.log("key",a)
+      //     document.getElementById(key)?.scrollIntoView({ behavior: "smooth", block: 'center' });
+      //   }
+      // });
+    }
   }
 
   ngOnInit(): void {
