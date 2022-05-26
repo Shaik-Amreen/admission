@@ -1,22 +1,22 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable, ReplaySubject } from 'rxjs';
 
 @Component({
-  selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  selector: 'app-editdetails',
+  templateUrl: './editdetails.component.html',
+  styleUrls: ['./editdetails.component.css']
 })
-export class FormComponent implements OnInit {
+export class EditdetailsComponent implements OnInit {
+
   errorstatus: any = false
   formdata: any = [
 
     {
       combine: true, content: [
         { formname: "fullname", type: "text", tag: "input", required: true, validations: [Validators.required], label: "Full Name of the Candidate (In capitals)" },
-
 
         { formname: "academicyear", type: "number", tag: "input", required: true, validations: [Validators.required, Validators.min(2020)], label: "Academic year" },
 
@@ -190,68 +190,56 @@ export class FormComponent implements OnInit {
   admissionform: any = FormGroup
   constructor(private http: HttpClient, private route: Router) {
     let admissiondata: any = {}
-    this.formdata.forEach((c: any) => {
-      if (c.combine) {
-        c.content.forEach((d: any) => {
-          if (d.combine) {
-            d.content.forEach((e: any) => {
-              admissiondata[e.formname] = new FormControl('', e.validations)
+    this.http.post('http://localhost:4000/getstudent', { hallticket: sessionStorage.getItem('hallticket') }).subscribe(
+      (res: any) => {
+        res = res.data[0]
+        console.log(res)
+        this.formdata.forEach((c: any) => {
+          if (c.combine) {
+            c.content.forEach((d: any) => {
+              if (d.combine) {
+                d.content.forEach((e: any) => {
+                  admissiondata[e.formname] = new FormControl(res[e.formname], e.validations)
+                })
+              }
+              else {
+                admissiondata[d.formname] = new FormControl(res[d.formname], d.validations)
+              }
             })
           }
           else {
-            admissiondata[d.formname] = new FormControl('', d.validations)
+            admissiondata[c.formname] = new FormControl(res[c.formname], c.validations)
           }
-        })
-      }
-      else {
-        admissiondata[c.formname] = new FormControl('', c.validations)
-      }
-    });
+        });
 
-    admissiondata.allotmentorder = new FormControl(false)
-    admissiondata.joiningreport = new FormControl(false)
-    admissiondata.recieptofcert = new FormControl(false)
-    admissiondata.hallticketcert = new FormControl(false)
-    admissiondata.rankcard = new FormControl(false)
-    admissiondata.sscmarksmemo = new FormControl(false)
-    admissiondata.sixtencert = new FormControl(false)
+        admissiondata.allotmentorder = new FormControl(res.allotmentorder)
+        admissiondata.joiningreport = new FormControl(res.joiningreport)
+        admissiondata.recieptofcert = new FormControl(res.recieptofcert)
+        admissiondata.hallticketcert = new FormControl(res.hallticketcert)
+        admissiondata.rankcard = new FormControl(res.rankcard)
+        admissiondata.sscmarksmemo = new FormControl(res.sscmarksmemo)
+        admissiondata.sixtencert = new FormControl(res.sixtencert)
 
-    admissiondata.intermarksmemo = new FormControl(false)
-    admissiondata.intercert = new FormControl(false)
-    admissiondata.ugpc = new FormControl(false)
-    admissiondata.ugcert = new FormControl(false)
-    admissiondata.photos = new FormControl(false)
-    admissiondata.aadharcard = new FormControl(false)
-    admissiondata.othercert = new FormControl(false)
+        admissiondata.intermarksmemo = new FormControl(res.intermarksmemo)
+        admissiondata.intercert = new FormControl(res.intercert)
+        admissiondata.ugpc = new FormControl(res.ugpc)
+        admissiondata.ugcert = new FormControl(res.ugcert)
+        admissiondata.photos = new FormControl(res.photos)
+        admissiondata.aadharcard = new FormControl(res.aadharcard)
+        admissiondata.othercert = new FormControl(res.othercert)
 
-    this.admissionform = new FormGroup(admissiondata)
+        this.admissionform = new FormGroup(admissiondata)
+      })
   }
-
-  // base64Output: string = '';
-
-  // onFileSelected(event: any) {
-  //   this.convertFile(event.target.files[0]).subscribe((base64: any) => {
-  //     this.base64Output = base64;
-  //     this.admissionform.controls["studentphoto"].setValue(this.base64Output)
-  //   });
-  // }
-
-  // convertFile(file: File): Observable<string> {
-  //   const result = new ReplaySubject<string>(1);
-  //   const reader = new FileReader();
-  //   reader.readAsBinaryString(file);
-  //   reader.onload = (event: any) => result.next(btoa(event.target.result.toString()));
-  //   return result;
-  // }
 
   submit() {
 
     if (this.admissionform.status == 'VALID') {
       this.admissionform.value.hallticket = sessionStorage.getItem('hallticket')
-      this.admissionform.value.otpmail = sessionStorage.getItem('otpmail')
+      this.admissionform.value.otpmail = this.admissionform.value.otpmail
       this.http.post('http://localhost:4000/stdregistersubmit', this.admissionform.value).subscribe(
         res => {
-          this.route.navigate(['/submittedresponse'])
+          this.route.navigate(['/admin'])
         },
         err => console.log(err)
       )
