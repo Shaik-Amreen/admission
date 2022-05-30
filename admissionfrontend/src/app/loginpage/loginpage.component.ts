@@ -13,8 +13,8 @@ export class LoginpageComponent implements OnInit {
   formgroupdata: any = FormGroup;
   formdata: any[] =
     [
-      { "label": "Email address", "formname": "mail", "value": "", "valid": true, "tags": "input", "type": "email", "placeholder": "Enter your mail", "icon": 'bx bxs-envelope', "icon1": "", "icon2": "" },
-      { "label": "Password", "formname": "password", "value": '', "valid": true, "tags": "input", "placeholder": "Enter your password", "type": "password", "icon": "bx bxs-lock", "icon1": "bx bxs-hide", "icon2": "bx bxs-show" }
+      { "label": "Email address", "formname": "mail", "value": "", "valid": true, "tags": "input", "type": "email", "placeholder": "Enter your mail", "icon": 'bx bxs-envelope', "icon1": "", "icon2": "",validations: [Validators.required, Validators.pattern("^[a-zA-Z0-9]+([\.-]?[a-zA-Z0-9]+)*@[a-zA-Z0-9]+([\.-]?[a-zA-Z0-9]+)*(\.[a-zA-Z0-9]{2,3})+$")] },
+      { "label": "Password", "formname": "password", "value": '', "valid": true, "tags": "input", "placeholder": "Enter your password", "type": "password", "icon": "bx bxs-lock", "icon1": "bx bxs-hide", "icon2": "bx bxs-show",validations: [Validators.required] }
     ]
   mail = ''; otp = ''; generatedotp = ''; timeRemained = 120; invalidotp = false; mailerr = ''
   loginMode = true; logindata = false; errorMessage = ''; vepa: any = false;
@@ -28,7 +28,7 @@ export class LoginpageComponent implements OnInit {
     let form: any = {}
 
     this.formdata.forEach((e: any) => {
-      (e.valid) ? form[e.formname] = new FormControl(e.value, Validators.required) :
+      (e.valid) ? form[e.formname] = new FormControl(e.value, e.validations) :
         form[e.formname] = new FormControl(e.value)
       this.formgroupdata = new FormGroup(form)
     })
@@ -50,11 +50,13 @@ export class LoginpageComponent implements OnInit {
     this.formvalue = true;
     if (this.formgroupdata.status == 'VALID') {
       this.signin = "SIGNING... IN"
+      this.formgroupdata.value.mail=this.formgroupdata.value.mail.toLowerCase()
       this.http.post('http://localhost:4000/adminlogin', this.formgroupdata.value).subscribe(
         (res1: any) => {
           this.signin = "SIGN IN";
-          (res1.status == 'error') ? this.errorMessage = res1.error :
-            sessionStorage.setItem('mail', this.formgroupdata.value.mail); sessionStorage.setItem('token', res1.token); 
+          console.log(res1);
+          (res1.message) ? this.errorMessage = res1.message :
+           ( sessionStorage.setItem('mail', this.formgroupdata.value.mail), sessionStorage.setItem('token', res1.token),sessionStorage.setItem('role',res1.role)); 
           (res1.role == 'admin'|| res1.role == 'superadmin' ) ? this.router.navigate(['/admin'])  : null
         },
         (err: any) => console.log(err)

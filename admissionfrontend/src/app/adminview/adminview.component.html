@@ -471,7 +471,6 @@
 
 
 <div style="height: 100vh;width: 98vw;">
-
     <div *ngIf="viewTop">
         <br />
         <div style="display: flex;justify-content:center;">
@@ -1024,17 +1023,22 @@
                                         style="font-size: 1.3rem;margin-top: 0.5rem;"></i></span>
                             </span>
                         </div>
-                        <span class="danger" style="font-size: 0.8rem;">
-                            <span *ngIf="k.formname=='mail' && errorMessage=='Invalid mail'">
+                        <span class="danger" style="font-size: 0.8rem;color: #df4759;;font-weight: bold;">
+                            <span *ngIf="k.formname=='mail' && errorMessage=='User Exist'">
                                 &nbsp;{{errorMessage}}
                             </span>
-                            <span *ngIf="k.formname=='password' && errorMessage=='Invalid password'">
+                            <!-- <span *ngIf="k.formname=='password' && errorMessage=='Invalid password'">
                                 &nbsp;{{errorMessage}}
-                            </span>
+                            </span> -->
                         </span>
-                        <span style="color: #a5081a;"
+                        <span style="font-size: 0.8rem;color: #df4759;;font-weight: bold;"
                             *ngIf="formgroupdata.controls[k.formname].status=='INVALID' && formvalue==true">
-                            please fill this field
+                            <span *ngIf="formgroupdata.controls[k.formname].value==''">
+                                please fill this field
+                            </span>
+                            <span *ngIf="formgroupdata.controls[k.formname].value!=''">
+                                Invalid Mail
+                            </span>
                         </span>
                     </span><br>
                     <!-- <strong style="float: right;color:#5cb85c;"  id="press" (click)="changeMode()">Forgot password ?

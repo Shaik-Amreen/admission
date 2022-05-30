@@ -127,9 +127,10 @@ getadmin = async(req,res)=>{
 // }
 
 adminlogin = async (req, res) => {
+    console.log(req.body);
     data1 = await admin.findOne({ "mail": req.body.mail }).lean();
     const tokenHashed = encrypt(jwt.sign({ subject: req.body.mail }, JWTSECRET));
-        (!data1) ? res.send({ message: "Invalid User" }) :
+        (!data1) ? res.send({ message: "Invalid Mail" }) :
         (
             ((bcryptjs.compareSync(req.body.password, data1.password)) ?
                 res.send({ 'token': tokenHashed, mail: req.body.mail, role: data1.role }) : res.send({ message: "Invalid Password" }))
@@ -146,6 +147,9 @@ createadmin = async (req, res) => {
                 res.send({ message: "success" })
             }
         })
+    }
+    else{
+        res.send({message:"User Exist"})
     }
 }
 

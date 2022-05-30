@@ -34,18 +34,23 @@
                                     style="font-size: 1.3rem;margin-top: 0.5rem;"></i></span>
                         </span>
                     </div>
-                    <span class="danger" style="font-size: 0.8rem;">
-                        <span *ngIf="k.formname=='mail' && errorMessage=='Invalid mail'">
+                    <span class="danger" style="font-size: 0.8rem;color: #df4759;font-weight: bold;">
+                        <span *ngIf="k.formname=='mail' && errorMessage=='Invalid Mail'">
                             &nbsp;{{errorMessage}}
                         </span>
-                        <span *ngIf="k.formname=='password' && errorMessage=='Invalid password'">
+                        <span *ngIf="k.formname=='password' && errorMessage=='Invalid Password'">
                             &nbsp;{{errorMessage}}
                         </span>
                     </span>
-                    <span style="color: #a5081a;"
-                        *ngIf="formgroupdata.controls[k.formname].status=='INVALID' && formvalue==true">
-                        please fill this field
-                    </span>
+                    <span style="font-size: 0.8rem;color: #df4759;;font-weight: bold;"
+                            *ngIf="formgroupdata.controls[k.formname].status=='INVALID' && formvalue==true">
+                            <span *ngIf="formgroupdata.controls[k.formname].value==''">
+                                please fill this field
+                            </span>
+                            <span *ngIf="formgroupdata.controls[k.formname].value!=''">
+                                Invalid Mail
+                            </span>
+                        </span>
                 </span><br>
                 <!-- <strong style="float: right;color:#5cb85c;"  id="press" (click)="changeMode()">Forgot password ?
                 </strong><br> -->
