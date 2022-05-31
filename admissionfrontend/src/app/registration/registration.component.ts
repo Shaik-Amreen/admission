@@ -20,6 +20,7 @@ export class RegistrationComponent implements OnInit {
       defaultmail = sessionStorage.getItem("otpmail")
       defaulthallticket = sessionStorage.getItem("hallticket")
     }
+    sessionStorage.removeItem('role')
     this.registration = new FormGroup({
       'otpmail': new FormControl(defaultmail, [Validators.required, Validators.pattern('[a-zA-Z0-9]+\.[a-zA-Z0-9]+@gmail\.com')]),
       'hallticket': new FormControl(defaulthallticket, Validators.required),

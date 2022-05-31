@@ -473,13 +473,19 @@
 <div style="height: 100vh;width: 98vw;">
     <div *ngIf="viewTop">
         <br />
+        <button class="btn" (click)="logout()"
+            style="box-shadow: none;float: right;color: #a5081a;font-weight: 700;">Logout</button>
+        <button class="btn btn-success" *ngIf="role=='superadmin'" style="box-shadow: none;float: right;"
+            (click)="adduser=true">ADD USER</button>
+
         <div style="display: flex;justify-content:center;">
             <input [(ngModel)]="type" placeholder="start typing hallticket number ..." (click)="showData=false"
                 class="form-control shadow-none" style="width: 20vw;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;"
                 [(ngModel)]="type" />&nbsp;
-            <button class="btn btn-dark " style="box-shadow: none;" [disabled]="adduser==true" (click)=" filterStudent()"
-                style="font-size: 0.8rem;">Search <i class='bx bx-search' style="font-weight:700"></i></button>&nbsp;
-            <button class="btn btn-success" *ngIf="role=='superadmin'" style="box-shadow: none;" (click)="adduser=true">ADD USER</button>
+            <button class="btn btn-dark " style="box-shadow: none;" [disabled]="adduser==true"
+                (click)=" filterStudent()" style="font-size: 0.8rem;">Search <i class='bx bx-search'
+                    style="font-weight:700"></i></button>&nbsp;
+
         </div><br /><br />
         <div *ngIf="studentdata.length>0 && !adduser">
             <button class="btn btn-warning" (click)="openModal()">Click to proceed
@@ -996,12 +1002,12 @@
         </ng-template>
     </div>
 
-    <div *ngIf="adduser"
-        style="display:flex;justify-content: center;align-items: center;align-content: center;">
+    <div *ngIf="adduser" style="display:flex;justify-content: center;align-items: center;align-content: center;">
         <div class="logo cardshow">
             <div class="col-sm  content" style="margin: 0%;padding-top: 0%;">
                 <form (ngSubmit)="addadmin()" [formGroup]="formgroupdata" style="margin: 0%;padding-top: 0%;">
-                    <div style="display:flex;justify-content: center;align-items: center;align-content: center;padding-top: -20px;" >
+                    <div
+                        style="display:flex;justify-content: center;align-items: center;align-content: center;padding-top: -20px;">
                         <h3 style="color:#5cb85c;">ADD NEW USER</h3>
                     </div>
                     <span style="color: #a5081a;" *ngIf="errorMessage.includes('signup')">

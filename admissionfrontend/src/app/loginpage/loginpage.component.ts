@@ -13,17 +13,17 @@ export class LoginpageComponent implements OnInit {
   formgroupdata: any = FormGroup;
   formdata: any[] =
     [
-      { "label": "Email address", "formname": "mail", "value": "", "valid": true, "tags": "input", "type": "email", "placeholder": "Enter your mail", "icon": 'bx bxs-envelope', "icon1": "", "icon2": "",validations: [Validators.required, Validators.pattern("^[a-zA-Z0-9]+([\.-]?[a-zA-Z0-9]+)*@[a-zA-Z0-9]+([\.-]?[a-zA-Z0-9]+)*(\.[a-zA-Z0-9]{2,3})+$")] },
-      { "label": "Password", "formname": "password", "value": '', "valid": true, "tags": "input", "placeholder": "Enter your password", "type": "password", "icon": "bx bxs-lock", "icon1": "bx bxs-hide", "icon2": "bx bxs-show",validations: [Validators.required] }
+      { "label": "Email address", "formname": "mail", "value": "", "valid": true, "tags": "input", "type": "email", "placeholder": "Enter your mail", "icon": 'bx bxs-envelope', "icon1": "", "icon2": "", validations: [Validators.required, Validators.pattern("^[a-zA-Z0-9]+([\.-]?[a-zA-Z0-9]+)*@[a-zA-Z0-9]+([\.-]?[a-zA-Z0-9]+)*(\.[a-zA-Z0-9]{2,3})+$")] },
+      { "label": "Password", "formname": "password", "value": '', "valid": true, "tags": "input", "placeholder": "Enter your password", "type": "password", "icon": "bx bxs-lock", "icon1": "bx bxs-hide", "icon2": "bx bxs-show", validations: [Validators.required] }
     ]
   mail = ''; otp = ''; generatedotp = ''; timeRemained = 120; invalidotp = false; mailerr = ''
   loginMode = true; logindata = false; errorMessage = ''; vepa: any = false;
   formvalue = false; signin = "SIGN IN"
   ngOnInit() {
-
+    sessionStorage.removeItem('role')
   }
 
-  constructor(private http: HttpClient,private router: Router) {
+  constructor(private http: HttpClient, private router: Router) {
     sessionStorage.removeItem('mail')
     let form: any = {}
 
@@ -50,14 +50,14 @@ export class LoginpageComponent implements OnInit {
     this.formvalue = true;
     if (this.formgroupdata.status == 'VALID') {
       this.signin = "SIGNING... IN"
-      this.formgroupdata.value.mail=this.formgroupdata.value.mail.toLowerCase()
+      this.formgroupdata.value.mail = this.formgroupdata.value.mail.toLowerCase()
       this.http.post('http://localhost:4000/adminlogin', this.formgroupdata.value).subscribe(
         (res1: any) => {
           this.signin = "SIGN IN";
           console.log(res1);
           (res1.message) ? this.errorMessage = res1.message :
-           ( sessionStorage.setItem('mail', this.formgroupdata.value.mail), sessionStorage.setItem('token', res1.token),sessionStorage.setItem('role',res1.role)); 
-          (res1.role == 'admin'|| res1.role == 'superadmin' ) ? this.router.navigate(['/admin'])  : null
+            (sessionStorage.setItem('mail', this.formgroupdata.value.mail), sessionStorage.setItem('token', res1.token), sessionStorage.setItem('role', res1.role));
+          (res1.role == 'admin' || res1.role == 'superadmin') ? this.router.navigate(['/admin']) : null
         },
         (err: any) => console.log(err)
       )
@@ -67,7 +67,7 @@ export class LoginpageComponent implements OnInit {
   viewforgotpass: any = true
   changeMode() { this.mail = ''; this.viewforgotpass = !this.viewforgotpass }
   buttonMode = 'SEND OTP';
-  
+
   forget(f: NgForm) {
     this.mailerr = ''; f.value.mail = f.value.mail.toLowerCase()
     this.buttonMode = 'SENDING'; this.invalidotp = false
