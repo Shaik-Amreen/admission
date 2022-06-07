@@ -91,7 +91,7 @@ mail = (mailDetails) => {
         service: "gmail.com",
         auth: {
             user: "arikya.hak@gmail.com",
-            pass: "arikya@123",
+            pass: "msatbnhnozoxvksu",
         },
         secureConnection: true,
         tls: {
@@ -111,7 +111,8 @@ mail = (mailDetails) => {
 }
 
 getstudent = async (req, res) => {
-    data2 = await studentdata.find({ hallticket: req.body.hallticket }).lean();
+    data2 = await studentdata.find({ hallticket: req.body.hallticket,gender: {$ne:''} }).lean();
+    // console.log(data2,"data2")
     res.send({ data: data2 })
 }
 

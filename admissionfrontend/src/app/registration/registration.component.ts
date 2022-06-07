@@ -14,7 +14,10 @@ export class RegistrationComponent implements OnInit {
   optstatus: any = false
   errorStatus: any = false;
   otperror: any = ''
+  buttonClicked:any=false
   constructor(private http: HttpClient, private route: Router) {
+    this.buttonClicked=false
+    sessionStorage.clear()
     let defaultmail: any = '', defaulthallticket: any = ''
     if (sessionStorage.getItem("otpmail")) {
       defaultmail = sessionStorage.getItem("otpmail")
@@ -31,13 +34,16 @@ export class RegistrationComponent implements OnInit {
   }
 
 
-
+   
 
   register() {
     if (this.registration.status == 'VALID') {
+      this.buttonClicked=true
       this.http.post('http://localhost:4000/stdregister', this.registration.value).subscribe(
         (res: any) => {
           console.log(res)
+
+          sessionStorage.setItem('token',"success")
           if (res.message == "success") { this.optstatus = true }
           else { this.route.navigate(['/submittedresponse']) }
         },
@@ -56,6 +62,7 @@ export class RegistrationComponent implements OnInit {
     else {
       this.http.post('http://localhost:4000/verifyotp', this.registration.value).subscribe(
         (res: any) => {
+          console.log(res)
           if (res.message == "success") {
             this.registrationstatus = true;
             sessionStorage.setItem('otpmail', this.registration.value.otpmail)

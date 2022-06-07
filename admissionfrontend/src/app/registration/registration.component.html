@@ -46,7 +46,7 @@
             <span style="font-weight:500 ;color: crimson;font-size: 0.8rem;">{{otperror}}</span><br /><br />
         </span>
         <div class="text-center">
-            <button type="submit" *ngIf="!optstatus" class="btn btn-success" style="padding:0.5rem;"><span
+            <button type="submit" [disabled]="buttonClicked" *ngIf="!optstatus" class="btn btn-success" style="padding:0.5rem;"><span
                     style="font-weight:500 ;">Register</span></button>
             <button type="button" (click)="verifyopt()" *ngIf="optstatus" class="btn btn-success"
                 style="padding:0.5rem;"><span style="font-weight:500 ;">Verify OTP</span></button>
