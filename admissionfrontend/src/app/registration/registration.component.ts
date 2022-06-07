@@ -26,7 +26,7 @@ export class RegistrationComponent implements OnInit {
     sessionStorage.removeItem('role')
     this.registration = new FormGroup({
       'otpmail': new FormControl(defaultmail, [Validators.required, Validators.pattern('[a-zA-Z0-9]+\.[a-zA-Z0-9]+@gmail\.com')]),
-      'hallticket': new FormControl(defaulthallticket, Validators.required),
+      'hallticket': new FormControl(defaulthallticket, [Validators.required,Validators.maxLength(10),Validators.minLength(10)]),
       'otp': new FormControl(''),
       'gender': new FormControl(''),
 

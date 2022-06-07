@@ -23,8 +23,13 @@ export class AdminviewComponent implements OnInit {
       { "label": "Password", "formname": "password", "value": '', "valid": true, "tags": "input", "placeholder": "Enter your password", "type": "password", "icon": "bx bxs-lock", "icon1": "bx bxs-hide", "icon2": "bx bxs-show", validations: [Validators.required] }
     ]
 
-  studentdata: any = []; type: any = ''; role: any; adduser = false
+  studentdata: any = []; type: any = ''; role: any; adduser = false;registrations:any
   constructor(private http: HttpClient, private router: Router) {
+    this.http.post('http://localhost:4000/registrations',{}).subscribe((res:any)=>{
+      console.log(res,"res")
+    this.registrations = res.registrations
+    })
+
     // this.http.post('http://localhost:4000/getadmin',{mail:sessionStorage.getItem("mail")}).subscribe(
     //   (res:any)=>{
     //     this.role=res.data

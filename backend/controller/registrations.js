@@ -111,14 +111,14 @@ mail = (mailDetails) => {
 }
 
 getstudent = async (req, res) => {
-    data2 = await studentdata.find({ hallticket: req.body.hallticket,gender: {$ne:''} }).lean();
+    data2 = await studentdata.find({ hallticket: req.body.hallticket, gender: { $ne: '' } }).lean();
     // console.log(data2,"data2")
     res.send({ data: data2 })
 }
 
-getadmin = async(req,res)=>{
-    data =await admin.findOne({mail:req.body.mail}).lean();
-    res.send({data:data.role})
+getadmin = async (req, res) => {
+    data = await admin.findOne({ mail: req.body.mail }).lean();
+    res.send({ data: data.role })
 }
 
 // poststudents = (req, res) => {
@@ -131,11 +131,17 @@ adminlogin = async (req, res) => {
     console.log(req.body);
     data1 = await admin.findOne({ "mail": req.body.mail }).lean();
     const tokenHashed = encrypt(jwt.sign({ subject: req.body.mail }, JWTSECRET));
-        (!data1) ? res.send({ message: "Invalid Mail" }) :
+    (!data1) ? res.send({ message: "Invalid Mail" }) :
         (
             ((bcryptjs.compareSync(req.body.password, data1.password)) ?
                 res.send({ 'token': tokenHashed, mail: req.body.mail, role: data1.role }) : res.send({ message: "Invalid Password" }))
         );
+}
+
+registrations = async (req, res) => {
+    registrations = await studentdata.find({ gender: { $ne: '' } }, { _id: 0, hallticket: 1 }).lean();
+    console.log(registrations,"registrations")
+    res.send({ registrations: registrations.length })
 }
 
 createadmin = async (req, res) => {
@@ -149,9 +155,9 @@ createadmin = async (req, res) => {
             }
         })
     }
-    else{
-        res.send({message:"User Exist"})
+    else {
+        res.send({ message: "User Exist" })
     }
 }
 
-module.exports = { createadmin, adminlogin, getstudent, stdregistersubmit, verifyopt, stdregister,getadmin }
+module.exports = { createadmin, adminlogin, getstudent, registrations, stdregistersubmit, verifyopt, stdregister, getadmin }

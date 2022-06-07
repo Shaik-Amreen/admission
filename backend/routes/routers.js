@@ -9,5 +9,6 @@ router.post('/getstudent',Controls.getstudent)
 router.post('/adminlogin',Controls.adminlogin)
 router.post('/createadmin',Controls.createadmin)
 router.post('/getadmin',Controls.getadmin)
+router.post('/registrations',Controls.registrations)
 
 module.exports = router
