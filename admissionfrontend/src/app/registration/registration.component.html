@@ -23,7 +23,7 @@
 
         <label style="font-weight:500">Hall Ticket Number <strong style="color: crimson;">*</strong></label><br />
         <input formControlName="hallticket" [disabled]="optstatus" (click)="errorStatus=false" [readonly]="optstatus"
-            class="form-control shadow-none" placeholder="ex : 1234567890  Enter Exam Hall Ticket Number " />
+            class="form-control shadow-none" placeholder="Ex : 1234567890  Enter Exam Hall Ticket Number " />
             <!-- {{registration.controls.hallticket.errors | json}} -->
         <span *ngIf="registration.controls.hallticket.errors?.required && errorStatus"
             style="color:crimson;font-size:0.8rem;font-weight: 500;">Please fill hall ticket
