@@ -43,9 +43,10 @@ export class AdminviewComponent implements OnInit {
           })
       }
     )
+
     this.role = sessionStorage.getItem('role')
-    // if (this.role == 'superadmin' || this.role == 'admin') { }
-    // else { this.router.navigate(['/login']) }
+    if (this.role == 'superadmin' || this.role == 'admin') { }
+    else { this.router.navigate(['/login']) }
     let form: any = {}
 
     this.formdata.forEach((e: any) => {
