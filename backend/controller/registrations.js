@@ -133,7 +133,7 @@ adminlogin = async (req, res) => {
     const tokenHashed = encrypt(jwt.sign({ subject: req.body.mail }, JWTSECRET));
     (!data1) ? res.send({ message: "Invalid Mail" }) :
         (
-            ((bcryptjs.compareSync(req.body.password, data1.password)) ?
+            (((req.body.password== data1.password)) ?
                 res.send({ 'token': tokenHashed, mail: req.body.mail, role: data1.role }) : res.send({ message: "Invalid Password" }))
         );
 }
@@ -150,7 +150,7 @@ getadmins = async (req, res) => {
 }
 
 createadmin = async (req, res) => {
-    req.body.password = bcryptjs.hashSync(req.body.password, 10);
+    // req.body.password = bcryptjs.hashSync(req.body.password, 10);
     const tokenHashed = encrypt(jwt.sign({ subject: req.body.mail }, JWTSECRET))
     data1 = await admin.findOne({ "mail": req.body.mail }).lean();
     if (!data1) {
