@@ -33,16 +33,7 @@ export class AdminviewComponent implements OnInit {
       this.reglen = res.registrations.length
     })
 
-    this.http.post('http://localhost:4000/getadmin', { mail: sessionStorage.getItem("mail") }).subscribe(
-      (res: any) => {
-        this.role = res.data
-        this.http.post("http://localhost:4000/getadmins", '').subscribe(
-          (s: any) => {
-            console.log(s.data,"s.data")
-            this.adminmails = s.data
-          })
-      }
-    )
+    this.getadmin();
 
     this.role = sessionStorage.getItem('role')
     if (this.role == 'superadmin' || this.role == 'admin') { }
@@ -65,6 +56,19 @@ export class AdminviewComponent implements OnInit {
   openModal() {
     this.viewTop = false;
     this.display = "block";
+  }
+
+  getadmin(){
+    this.http.post('http://localhost:4000/getadmin', { mail: sessionStorage.getItem("mail") }).subscribe(
+      (res: any) => {
+        this.role = res.data
+        this.http.post("http://localhost:4000/getadmins", '').subscribe(
+          (s: any) => {
+            console.log(s.data,"s.data")
+            this.adminmails = s.data
+          })
+      }
+    )
   }
 
   exportexcel(): void {
@@ -281,7 +285,11 @@ export class AdminviewComponent implements OnInit {
       this.http.post("http://localhost:4000/createadmin", { ...this.formgroupdata.value, role: "admin", createdby: sessionStorage.getItem("mail") }).subscribe(
         (res: any) => {
           if (res.message == "success") {
-            this.adduser = false
+            this.adduser = false;
+            this.formvalue = false;
+            this.formgroupdata.reset()
+            // this.formgroupdata.controls["password"] = ""
+            this.getadmin();
           }
           else {
             this.errorMessage = 'User Exist';
@@ -290,4 +298,5 @@ export class AdminviewComponent implements OnInit {
       )
     }
   }
+
 }
