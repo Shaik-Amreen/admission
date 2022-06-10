@@ -617,11 +617,9 @@
 <div style="height: 100vh;width: 98vw;">
     <div *ngIf="viewTop">
         <br />
-        <button class="btn" (click)="logout()"
-            style="box-shadow: none;float: right;color: #a5081a;font-weight: 700;">Logout</button>
-        <button class="btn btn-success" *ngIf="role=='superadmin'" style="box-shadow: none;float: right;"
-            (click)="adduser=true"> USERS</button>
-        <button (click)="exportexcel()" class="btn btn-primary" style="float: left;">Registrations : {{reglen}}</button>
+        <button class="btn btn-danger" (click)="logout()" style="box-shadow: none;float: right;color: white;margin-left :1rem;font-weight: 700;">Log Out</button>
+        <button class="btn btn-success" *ngIf="role=='superadmin'" style="box-shadow: none;float: right;font-weight: 700;" (click)="adduser=true"> Users</button>
+        <button (click)="exportexcel()" class="btn btn-primary" style="float: left;margin-left: 1rem;">Registrations : {{reglen}}</button>
 
         <div style="display: flex;justify-content:center;">
             <input [(ngModel)]="type" placeholder="start typing hallticket number ..." (click)="showData=false"
@@ -1150,14 +1148,73 @@
     <div *ngIf="adduser" class="row"
         style="display:flex;justify-content: center;align-items: center;align-content: center;">
         <div class="col-1"></div>
-        <div class="col-sm-5 card shadow text-center">
+        <div class="logo1 cardshow col-sm-5 text-center table-responsive">
+            <br />
+            <div class="row " style="font-size: 0.8rem;">
+                <div style="display:flex;justify-content: center;align-items: center;align-content: center;padding-top: -20px;">
+                    <h3 style="color:#5cb85c;">USERS</h3>
+                </div>
+                <div class="col-sm-5"
+                    style="border-radius:2px;background-color: #fff;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;margin-bottom: 0.3rem;padding: 0.5rem;margin-right: 1rem;padding-right: 0.5rem;">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Mail</th>
+                            </tr>
+                            <span *ngFor="let c of adminmails" style="font-size: 0.9rem;">
+                                <tr>
+                                    <td>{{c.mail}}</td>
+                                </tr>
+                            </span>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-sm"
+                    style="border-radius:2px;background-color: #fff;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;margin-bottom: 0.3rem;padding: 0.5rem;margin-right: 0.7rem;">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Password</th>
+                            </tr>
+                            <span *ngFor="let c of adminmails" style="font-size: 0.9rem;">
+                                <tr>
+                                    <td>{{c.password}}</td>
+                                </tr>
+                            </span>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- <span *ngFor="let c of adminmails" style="font-size: 0.9rem;"><br />
+                <span> {{c}}</span>
+            </span> -->
+            <br />
+        </div>
+        <!-- <div class="col-sm-5 card shadow text-center">
             <br />
             <strong>USERS</strong>
+            <div class="row" style="font-size: 0.8rem;">
+                <div class="col-sm"
+                    style="border-radius:2px;background-color: #fff;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;margin-bottom: 0.3rem;padding: 0.5rem;margin-right: 0.7rem;">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Mail</th>
+                            </tr>
+                            <span *ngFor="let c of adminmails" style="font-size: 0.9rem;">
+                                <tr>
+                                    <td>{{c}}</td>
+                                </tr>
+                            </span>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             <span *ngFor="let c of adminmails" style="font-size: 0.9rem;"><br />
                 <span> {{c}}</span>
             </span>
             <br />
-        </div>
+        </div> -->
 
         <div class="logo cardshow col-sm">
             <div class="col-sm  content" style="margin: 0%;padding-top: 0%;">

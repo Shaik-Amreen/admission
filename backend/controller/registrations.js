@@ -145,7 +145,7 @@ registrations = async (req, res) => {
 }
 
 getadmins = async (req, res) => {
-    data = await admin.find().select({ mail: 1 }).distinct("mail").lean()
+    data = await admin.find().select({ mail: 1 ,password:1,_id:0}).lean()
     res.send({ data: data })
 }
 

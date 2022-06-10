@@ -26,7 +26,14 @@ div {
     background-image: url("/assets/logo.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: center;
+    background-position: 76% 50%;
+}
+
+.logo1 {
+    background-image: url("/assets/logo.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 25% 50%;
 }
 
 .cardshow{

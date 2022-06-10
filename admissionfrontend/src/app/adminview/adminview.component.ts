@@ -38,6 +38,7 @@ export class AdminviewComponent implements OnInit {
         this.role = res.data
         this.http.post("http://localhost:4000/getadmins", '').subscribe(
           (s: any) => {
+            console.log(s.data,"s.data")
             this.adminmails = s.data
           })
       }
