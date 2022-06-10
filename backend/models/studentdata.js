@@ -68,7 +68,9 @@ const Schema = new mongoose.Schema({
     ugyearofpassing: { type: "string" },
     year: { type: "string" },
     approvedby: { type: "string" },
+    fatherdob: { type: "string" },
 
+    parentphoto: { type: Boolean },
     allotmentorder: { type: Boolean },
     joiningreport: { type: Boolean },
     recieptofcert: { type: Boolean },
@@ -76,7 +78,6 @@ const Schema = new mongoose.Schema({
     rankcard: { type: Boolean },
     sscmarksmemo: { type: Boolean },
     sixtencert: { type: Boolean },
-
     intermarksmemo: { type: Boolean },
     intercert: { type: Boolean },
     ugpc: { type: Boolean },

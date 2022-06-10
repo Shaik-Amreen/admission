@@ -14,9 +14,9 @@ export class RegistrationComponent implements OnInit {
   optstatus: any = false
   errorStatus: any = false;
   otperror: any = ''
-  buttonClicked:any=false
+  buttonClicked: any = false
   constructor(private http: HttpClient, private route: Router) {
-    this.buttonClicked=false
+    this.buttonClicked = false
     sessionStorage.clear()
     let defaultmail: any = '', defaulthallticket: any = ''
     if (sessionStorage.getItem("otpmail")) {
@@ -26,7 +26,7 @@ export class RegistrationComponent implements OnInit {
     sessionStorage.removeItem('role')
     this.registration = new FormGroup({
       'otpmail': new FormControl(defaultmail, [Validators.required, Validators.pattern('[a-zA-Z0-9]+\.[a-zA-Z0-9]+@gmail\.com')]),
-      'hallticket': new FormControl(defaulthallticket, [Validators.required,Validators.maxLength(10),Validators.minLength(10)]),
+      'hallticket': new FormControl(defaulthallticket, [Validators.required, Validators.maxLength(10), Validators.minLength(10)]),
       'otp': new FormControl(''),
       'gender': new FormControl(''),
 
@@ -34,16 +34,16 @@ export class RegistrationComponent implements OnInit {
   }
 
 
-   
+
 
   register() {
     if (this.registration.status == 'VALID') {
-      this.buttonClicked=true
+      this.buttonClicked = true
       this.http.post('http://localhost:4000/stdregister', this.registration.value).subscribe(
         (res: any) => {
           console.log(res)
 
-          sessionStorage.setItem('token',"success")
+          sessionStorage.setItem('token', "success")
           if (res.message == "success") { this.optstatus = true }
           else { this.route.navigate(['/submittedresponse']) }
         },

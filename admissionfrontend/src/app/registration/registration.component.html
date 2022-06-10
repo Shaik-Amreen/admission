@@ -23,7 +23,7 @@
 
         <label style="font-weight:500">Hall Ticket Number <strong style="color: crimson;">*</strong></label><br />
         <input formControlName="hallticket" [disabled]="optstatus" (click)="errorStatus=false" [readonly]="optstatus"
-            class="form-control shadow-none" placeholder="ex : 1234567890 " />
+            class="form-control shadow-none" placeholder="ex : 1234567890  entrance exam hall ticket " />
             <!-- {{registration.controls.hallticket.errors | json}} -->
         <span *ngIf="registration.controls.hallticket.errors?.required && errorStatus"
             style="color:crimson;font-size:0.8rem;font-weight: 500;">Please fill hall ticket
@@ -33,7 +33,7 @@
         <br />
         <label style="font-weight:500">Mail Id <strong style="color: crimson;">*</strong></label><br />
         <input (click)="errorStatus=false" [disabled]="optstatus" formControlName="otpmail" [readonly]="optstatus"
-            class="form-control shadow-none" placeholder="mits@gmail.com" />
+            class="form-control shadow-none" placeholder="only gmail is accepted" />
 
         <span *ngIf="errorStatus" style="color:crimson;font-size:0.8rem">
             <span style="font-weight:500 ;" *ngIf="registration.controls.otpmail.errors?.required">Please fill Mail

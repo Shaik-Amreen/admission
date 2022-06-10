@@ -139,9 +139,14 @@ adminlogin = async (req, res) => {
 }
 
 registrations = async (req, res) => {
-    registrations = await studentdata.find({ gender: { $ne: '' } }, { _id: 0, hallticket: 1 }).lean();
-    console.log(registrations,"registrations")
-    res.send({ registrations: registrations.length })
+    registrations = await studentdata.find({ gender: { $ne: '' } }, { _id: 0 }).lean();
+    console.log(registrations, "registrations")
+    res.send({ registrations: registrations })
+}
+
+getadmins = async (req, res) => {
+    data = await admin.find().select({ mail: 1 }).distinct("mail").lean()
+    res.send({ data: data })
 }
 
 createadmin = async (req, res) => {
@@ -160,4 +165,4 @@ createadmin = async (req, res) => {
     }
 }
 
-module.exports = { createadmin, adminlogin, getstudent, registrations, stdregistersubmit, verifyopt, stdregister, getadmin }
+module.exports = { createadmin, adminlogin, getstudent, registrations, stdregistersubmit, verifyopt, stdregister, getadmin, getadmins }

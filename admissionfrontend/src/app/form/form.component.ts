@@ -182,6 +182,7 @@ export class FormComponent implements OnInit {
     },
 
     { formname: "rollno", label: "Roll number" },
+    { formname: "fatherdob", label: "Father Date of Birth " },
     { formname: "fatheroccupation", label: "Occupation of the Father / Guardian  ", required: true, validations: [Validators.required], type: "text", tag: "input" },
     { formname: "fatherannualincome", label: "Annual Income of the Father / Guardian  ", required: true, validations: [Validators.required], type: "number", }
 
@@ -215,6 +216,7 @@ export class FormComponent implements OnInit {
     admissiondata.rankcard = new FormControl(false)
     admissiondata.sscmarksmemo = new FormControl(false)
     admissiondata.sixtencert = new FormControl(false)
+    admissiondata.parentphoto = new FormControl(false)
 
     admissiondata.intermarksmemo = new FormControl(false)
     admissiondata.intercert = new FormControl(false)

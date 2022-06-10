@@ -182,6 +182,7 @@ export class EditdetailsComponent implements OnInit {
     },
 
     { formname: "rollno", label: "Roll number" },
+    { formname: "fatherdob", label: "Father Date of Birth " },
     { formname: "fatheroccupation", label: "Occupation of the Father / Guardian  ", required: true, validations: [Validators.required], type: "text", tag: "input" },
     { formname: "fatherannualincome", label: "Annual Income of the Father / Guardian  ", required: true, validations: [Validators.required], type: "number", }
 
@@ -219,7 +220,7 @@ export class EditdetailsComponent implements OnInit {
         admissiondata.rankcard = new FormControl(res.rankcard)
         admissiondata.sscmarksmemo = new FormControl(res.sscmarksmemo)
         admissiondata.sixtencert = new FormControl(res.sixtencert)
-
+        admissiondata.parentphoto = new FormControl(res.parentphoto)
         admissiondata.intermarksmemo = new FormControl(res.intermarksmemo)
         admissiondata.intercert = new FormControl(res.intercert)
         admissiondata.ugpc = new FormControl(res.ugpc)

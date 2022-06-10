@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: "register", component: RegistrationComponent },
   { path: "admission", component: FormComponent, canActivate: [AuthGuard] },
   { path: "submittedresponse", component: ResponseComponent, canActivate: [AuthGuard] },
-  { path: "admin", component: AdminviewComponent, canActivate: [AuthGuard] },
+  { path: "admin", component: AdminviewComponent },
   { path: "login", component: LoginpageComponent },
   { path: "edit", component: EditdetailsComponent, canActivate: [AuthGuard] }
 ];
