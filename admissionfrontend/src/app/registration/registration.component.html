@@ -23,7 +23,7 @@
 
         <label style="font-weight:500">Hall Ticket Number <strong style="color: crimson;">*</strong></label><br />
         <input formControlName="hallticket" [disabled]="optstatus" (click)="errorStatus=false" [readonly]="optstatus"
-            class="form-control shadow-none" placeholder="ex : 1234567890  entrance exam hall ticket " />
+            class="form-control shadow-none" placeholder="ex : 1234567890  Enter Exam Hall Ticket Number " />
             <!-- {{registration.controls.hallticket.errors | json}} -->
         <span *ngIf="registration.controls.hallticket.errors?.required && errorStatus"
             style="color:crimson;font-size:0.8rem;font-weight: 500;">Please fill hall ticket
@@ -33,7 +33,7 @@
         <br />
         <label style="font-weight:500">Mail Id <strong style="color: crimson;">*</strong></label><br />
         <input (click)="errorStatus=false" [disabled]="optstatus" formControlName="otpmail" [readonly]="optstatus"
-            class="form-control shadow-none" placeholder="only gmail is accepted" />
+            class="form-control shadow-none" placeholder="Only Gmail Is Accepted" />
 
         <span *ngIf="errorStatus" style="color:crimson;font-size:0.8rem">
             <span style="font-weight:500 ;" *ngIf="registration.controls.otpmail.errors?.required">Please fill Mail
@@ -44,7 +44,7 @@
         <br />
         <span *ngIf="optstatus">
             <label style=" font-weight:500"> One time password <strong style="color: crimson;">*</strong></label><br />
-            <input (click)="otperror=''" formControlName="otp" placeholder="please check your mail"
+            <input (click)="otperror=''" formControlName="otp" placeholder="Please Check Your Mail"
                 class="form-control shadow-none" />
             <span style="font-weight:500 ;color: crimson;font-size: 0.8rem;">{{otperror}}</span><br /><br />
         </span>
