@@ -468,159 +468,17 @@
 </div> -->
 
 
-<table id="excel-table" style="display: none;">
-    <tr>
-        <th>aadharno</th>
-        <th>academicyear</th>
-        <th>appeared</th>
-        <th>branchapplied</th>
-        <th>caste</th>
-        <th>category</th>
-        <th>course</th>
-        <th>dob</th>
-        <th>entranceexam</th>
-        <th>fatherannualincome</th>
-        <th>fathermobile</th>
-        <th>fathername</th>
-        <th>fatheroccupation</th>
-        <th>fullname</th>
-        <th>gender</th>
-        <th>Hall ticket </th>
-        <th>interboardoruniversity</th>
-        <th>intergrade</th>
-        <th>intergrouporbranch</th>
-        <th>interschoolorcollegename</th>
-        <th>interyearofpassing</th>
-        <th>lateralentry</th>
-        <th>mothermobile</th>
-        <th>mothername</th>
-        <th>nationality</th>
-        <th>otherboardoruniversity</th>
-        <th>othergrade</th>
-        <th>othergrouporbranch</th>
-        <th>otherschoolorcollegename</th>
-        <th>otheryearofpassing</th>
-        <th>otpmail</th>
-        <th>otp</th>
-        <th>parentmail</th>
-        <th>permanenthouseno</th>
-        <th>permanentpin</th>
-        <th>permanentstate</th>
-        <th>permanentstreet</th>
-        <th>permanentvillage</th>
-        <th>pgboardoruniversity</th>
-        <th>pggrade</th>
-        <th>pggrouporbranch</th>
-        <th>pgschoolorcollegename</th>
-        <th>pgyearofpassing</th>
-        <th>presenthouseno</th>
-        <th>presentpin</th>
-        <th>presentstate</th>
-        <th>presentstreet</th>
-        <th>presentvillage</th>
-        <th>quota</th>
-        <th>rank</th>
-        <th>religion</th>
-        <th>rollno</th>
-        <th>schoolorcollegename</th>
-        <th>sscboardoruniversity</th>
-        <th>sscgrade</th>
-        <th>sscgrouporbranch</th>
-        <th>sscyearofpassing</th>
-        <th>studentblood</th>
-        <th>studentmail</th>
-        <th>studentmobile</th>
-        <th>studentphoto</th>
-        <th>ugboardoruniversity</th>
-        <th>uggrade</th>
-        <th>uggrouporbranch</th>
-        <th>ugschoolorcollegename</th>
-        <th>ugyearofpassing</th>
-        <th>year</th>
-        <th>approvedby</th>
-        <th>fatherdob</th>
-    </tr>
-    <tr *ngFor="let item of registrations">
-        <td>{{item.aadharno }}</td>
-        <td>{{item.academicyear}}</td>
-        <td>{{item.appeared}}</td>
-        <td>{{item.branchapplied}}</td>
-        <td>{{item.caste}}</td>
-        <td>{{item.category}}</td>
-        <td>{{item.course}}</td>
-        <td>{{item.dob}}</td>
-        <td>{{item.entranceexam}}</td>
-        <td>{{item.fatherannualincome}}</td>
-        <td>{{item.fathermobile}}</td>
-        <td>{{item.fathername}}</td>
-        <td>{{item.fatheroccupation}}</td>
-        <td>{{item.fullname}}</td>
-        <td>{{item.gender}}</td>
-        <td>{{item.hallticket}}</td>
-        <td>{{item.interboardoruniversity}}</td>
-        <td>{{item.intergrade}}</td>
-        <td>{{item.intergrouporbranch}}</td>
-        <td>{{item.interschoolorcollegename}}</td>
-        <td>{{item.interyearofpassing}}</td>
-        <td>{{item.lateralentry}}</td>
-        <td>{{item.mothermobile}}</td>
-        <td>{{item.mothername}}</td>
-        <td>{{item.nationality}}</td>
-        <td>{{item.otherboardoruniversity}}</td>
-        <td>{{item.othergrade}}</td>
-        <td>{{item.othergrouporbranch}}</td>
-        <td>{{item.otherschoolorcollegename}}</td>
-        <td>{{item.otheryearofpassing}}</td>
-        <td>{{item.otpmail}}</td>
-        <td>{{item.otp}}</td>
-        <td>{{item.parentmail}}</td>
-        <td>{{item.permanenthouseno}}</td>
-        <td>{{item.permanentpin}}</td>
-        <td>{{item.permanentstate}}</td>
-        <td>{{item.permanentstreet}}</td>
-        <td>{{item.permanentvillage}}</td>
-        <td>{{item.pgboardoruniversity}}</td>
-        <td>{{item.pggrade}}</td>
-        <td>{{item.pggrouporbranch}}</td>
-        <td>{{item.pgschoolorcollegename}}</td>
-        <td>{{item.pgyearofpassing}}</td>
-        <td>{{item.presenthouseno}}</td>
-        <td>{{item.presentpin}}</td>
-        <td>{{item.presentstate}}</td>
-        <td>{{item.presentstreet}}</td>
-        <td>{{item.presentvillage}}</td>
-        <td>{{item.quota}}</td>
-        <td>{{item.rank}}</td>
-        <td>{{item.religion}}</td>
-        <td>{{item.rollno}}</td>
-        <td>{{item.schoolorcollegename}}</td>
-        <td>{{item.sscboardoruniversity}}</td>
-        <td>{{item.sscgrade}}</td>
-        <td>{{item.sscgrouporbranch}}</td>
-        <td>{{item.sscyearofpassing}}</td>
-        <td>{{item.studentblood}}</td>
-        <td>{{item.studentmail}}</td>
-        <td>{{item.studentmobile}}</td>
-        <td>{{item.studentphoto}}</td>
-        <td>{{item.ugboardoruniversity}}</td>
-        <td>{{item.uggrade}}</td>
-        <td>{{item.uggrouporbranch}}</td>
-        <td>{{item.ugschoolorcollegename}}</td>
-        <td>{{item.ugyearofpassing}}</td>
-        <td>{{item.year}}</td>
-        <td>{{item.approvedby}}</td>
-        <td>{{item.fatherdob}}</td>
-    </tr>
-</table>
-
-
 <div style="height: 100vh;width: 98vw;">
     <div *ngIf="viewTop">
         <br />
         <button class="btn btn-danger" (click)="logout()"
             style="box-shadow: none;float: right;color: white;margin-left :1rem;font-weight: 700;">Log Out</button>
         <button class="btn btn-success" *ngIf="role=='superadmin'"
-            style="box-shadow: none;float: right;font-weight: 700;" (click)="adduser=true;formvalue=false"> Users</button>
+            style="box-shadow: none;float: right;color: white;font-weight: 700;margin-left :1rem;" (click)="adduser=true;formvalue=false">
+            Users</button>
+        <button class="btn btn-info" 
+            style="box-shadow: none;float: right;color: white;font-weight: 700;" (click)="adduser=false;studentdata=[]">
+            Home</button>
         <button (click)="exportexcel()" class="btn btn-primary" style="float: left;margin-left: 1rem;">Registrations :
             {{reglen}}</button>
 
@@ -1152,7 +1010,8 @@
         <div class="col-1"></div>
         <div class="logo1 cardshow col-sm-5 text-center table-responsive">
             <br />
-            <div class="row " style="font-size: 0.8rem;">
+            <div class="row " style="font-size: 0.8rem;margin-top: 3rem;">
+                <br><br>
                 <div class="text-center">
                     <h3 style="color:#5cb85c;">USERS</h3>
                 </div>
@@ -1261,5 +1120,158 @@
             </div>
         </div>
 
+    </div>
+
+
+    <div class="table-responsive logo2" *ngIf="!adduser && registrations" style="height: 85vh;width: 98vw;margin-left: 1rem;">
+        <table  class="table table-bordered table-striped text-center " style="font-size: 0.8rem;"
+            id="excel-table">
+            <thead style="background-color: #1b1c1e;color: #fff !important;border-bottom: none;">
+                <tr>
+                    <th>Hall ticket </th>
+                    <th>aadharno</th>
+                    <th>academicyear</th>
+                    <th>appeared</th>
+                    <th>branchapplied</th>
+                    <th>caste</th>
+                    <th>category</th>
+                    <th>course</th>
+                    <th>dob</th>
+                    <th>entranceexam</th>
+                    <th>fatherannualincome</th>
+                    <th>fathermobile</th>
+                    <th>fathername</th>
+                    <th>fatheroccupation</th>
+                    <th>fullname</th>
+                    <th>gender</th>
+                    <th>interboardoruniversity</th>
+                    <th>intergrade</th>
+                    <th>intergrouporbranch</th>
+                    <th>interschoolorcollegename</th>
+                    <th>interyearofpassing</th>
+                    <th>lateralentry</th>
+                    <th>mothermobile</th>
+                    <th>mothername</th>
+                    <th>nationality</th>
+                    <th>otherboardoruniversity</th>
+                    <th>othergrade</th>
+                    <th>othergrouporbranch</th>
+                    <th>otherschoolorcollegename</th>
+                    <th>otheryearofpassing</th>
+                    <th>otpmail</th>
+                    <th>otp</th>
+                    <th>parentmail</th>
+                    <th>permanenthouseno</th>
+                    <th>permanentpin</th>
+                    <th>permanentstate</th>
+                    <th>permanentstreet</th>
+                    <th>permanentvillage</th>
+                    <th>pgboardoruniversity</th>
+                    <th>pggrade</th>
+                    <th>pggrouporbranch</th>
+                    <th>pgschoolorcollegename</th>
+                    <th>pgyearofpassing</th>
+                    <th>presenthouseno</th>
+                    <th>presentpin</th>
+                    <th>presentstate</th>
+                    <th>presentstreet</th>
+                    <th>presentvillage</th>
+                    <th>quota</th>
+                    <th>rank</th>
+                    <th>religion</th>
+                    <th>rollno</th>
+                    <th>schoolorcollegename</th>
+                    <th>sscboardoruniversity</th>
+                    <th>sscgrade</th>
+                    <th>sscgrouporbranch</th>
+                    <th>sscyearofpassing</th>
+                    <th>studentblood</th>
+                    <th>studentmail</th>
+                    <th>studentmobile</th>
+                    <th>studentphoto</th>
+                    <th>ugboardoruniversity</th>
+                    <th>uggrade</th>
+                    <th>uggrouporbranch</th>
+                    <th>ugschoolorcollegename</th>
+                    <th>ugyearofpassing</th>
+                    <th>year</th>
+                    <th>approvedby</th>
+                    <th>fatherdob</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of registrations">
+                    <td>{{item.hallticket}}</td>
+                    <td>{{item.aadharno }}</td>
+                    <td>{{item.academicyear}}</td>
+                    <td>{{item.appeared}}</td>
+                    <td>{{item.branchapplied}}</td>
+                    <td>{{item.caste}}</td>
+                    <td>{{item.category}}</td>
+                    <td>{{item.course}}</td>
+                    <td>{{item.dob}}</td>
+                    <td>{{item.entranceexam}}</td>
+                    <td>{{item.fatherannualincome}}</td>
+                    <td>{{item.fathermobile}}</td>
+                    <td>{{item.fathername}}</td>
+                    <td>{{item.fatheroccupation}}</td>
+                    <td>{{item.fullname}}</td>
+                    <td>{{item.gender}}</td>
+                    <td>{{item.interboardoruniversity}}</td>
+                    <td>{{item.intergrade}}</td>
+                    <td>{{item.intergrouporbranch}}</td>
+                    <td>{{item.interschoolorcollegename}}</td>
+                    <td>{{item.interyearofpassing}}</td>
+                    <td>{{item.lateralentry}}</td>
+                    <td>{{item.mothermobile}}</td>
+                    <td>{{item.mothername}}</td>
+                    <td>{{item.nationality}}</td>
+                    <td>{{item.otherboardoruniversity}}</td>
+                    <td>{{item.othergrade}}</td>
+                    <td>{{item.othergrouporbranch}}</td>
+                    <td>{{item.otherschoolorcollegename}}</td>
+                    <td>{{item.otheryearofpassing}}</td>
+                    <td>{{item.otpmail}}</td>
+                    <td>{{item.otp}}</td>
+                    <td>{{item.parentmail}}</td>
+                    <td>{{item.permanenthouseno}}</td>
+                    <td>{{item.permanentpin}}</td>
+                    <td>{{item.permanentstate}}</td>
+                    <td>{{item.permanentstreet}}</td>
+                    <td>{{item.permanentvillage}}</td>
+                    <td>{{item.pgboardoruniversity}}</td>
+                    <td>{{item.pggrade}}</td>
+                    <td>{{item.pggrouporbranch}}</td>
+                    <td>{{item.pgschoolorcollegename}}</td>
+                    <td>{{item.pgyearofpassing}}</td>
+                    <td>{{item.presenthouseno}}</td>
+                    <td>{{item.presentpin}}</td>
+                    <td>{{item.presentstate}}</td>
+                    <td>{{item.presentstreet}}</td>
+                    <td>{{item.presentvillage}}</td>
+                    <td>{{item.quota}}</td>
+                    <td>{{item.rank}}</td>
+                    <td>{{item.religion}}</td>
+                    <td>{{item.rollno}}</td>
+                    <td>{{item.schoolorcollegename}}</td>
+                    <td>{{item.sscboardoruniversity}}</td>
+                    <td>{{item.sscgrade}}</td>
+                    <td>{{item.sscgrouporbranch}}</td>
+                    <td>{{item.sscyearofpassing}}</td>
+                    <td>{{item.studentblood}}</td>
+                    <td>{{item.studentmail}}</td>
+                    <td>{{item.studentmobile}}</td>
+                    <td>{{item.studentphoto}}</td>
+                    <td>{{item.ugboardoruniversity}}</td>
+                    <td>{{item.uggrade}}</td>
+                    <td>{{item.uggrouporbranch}}</td>
+                    <td>{{item.ugschoolorcollegename}}</td>
+                    <td>{{item.ugyearofpassing}}</td>
+                    <td>{{item.year}}</td>
+                    <td>{{item.approvedby}}</td>
+                    <td>{{item.fatherdob}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>

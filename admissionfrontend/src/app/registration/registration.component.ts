@@ -33,9 +33,6 @@ export class RegistrationComponent implements OnInit {
     })
   }
 
-
-
-
   register() {
     if (this.registration.status == 'VALID') {
       this.buttonClicked = true
@@ -52,6 +49,7 @@ export class RegistrationComponent implements OnInit {
     }
     else {
       this.errorStatus = true
+      
     }
   }
 

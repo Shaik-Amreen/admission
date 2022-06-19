@@ -117,8 +117,9 @@ getstudent = async (req, res) => {
 }
 
 getadmin = async (req, res) => {
+    console.log("req.body",req.body)
     data = await admin.findOne({ mail: req.body.mail }).lean();
-    res.send({ data: data.role })
+    data && data.role?res.send({ data: data.role }):null
 }
 
 // poststudents = (req, res) => {
@@ -128,7 +129,7 @@ getadmin = async (req, res) => {
 // }
 
 adminlogin = async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     data1 = await admin.findOne({ "mail": req.body.mail }).lean();
     const tokenHashed = encrypt(jwt.sign({ subject: req.body.mail }, JWTSECRET));
     (!data1) ? res.send({ message: "Invalid Mail" }) :

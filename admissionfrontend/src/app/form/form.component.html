@@ -33,9 +33,9 @@
                     <span *ngFor="let d of c.content">
                         <label style="font-weight: 500;">{{d.label}}</label>&nbsp;
                         <sup style="color:#a5081a" *ngIf="d.required"><strong style="font-weight: 900">*</strong></sup>
-                        <input class="form-control shadow-none" type="{{d.type}}" formControlName="{{d.formname}}"
+                        <input placeholder="{{d.placeholder}}" class="form-control shadow-none" type="{{d.type}}"  id="{{d.formname}}" formControlName="{{d.formname}}"
                             *ngIf="d.tag=='input'" />
-                        <select formControlName="{{d.formname}}" class="form-control shadow-none"
+                        <select id="{{d.formname}}" formControlName="{{d.formname}}" class="form-control shadow-none"
                             *ngIf="d.tag=='select'">
                             <option value="" disabled selected>Please select</option>
                             <option *ngFor="let o of d.options" value="{{o.value}}">{{o.view}}</option>
@@ -47,9 +47,9 @@
                                     <sup style="color:#a5081a" *ngIf="e.required"><strong
                                             style="font-weight: 900">*</strong></sup>
                                 </span>
-                                <input class="form-control shadow-none" formControlName="{{e.formname}}"
+                                <input placeholder="{{e.placeholder}}" class="form-control shadow-none" id="{{e.formname}}" formControlName="{{e.formname}}"
                                     type="{{e.type}}" *ngIf="e.tag=='input'" />
-                                <select class="form-control shadow-none" formControlName="{{e.formname}}"
+                                <select class="form-control shadow-none" id="{{e.formname}}" formControlName="{{e.formname}}"
                                     *ngIf="e.tag=='select'">
                                     <option value="" disabled selected>Please select</option>
                                     <option *ngFor="let f of e.options" value="{{f.value}}">{{f.view}}</option>
@@ -69,7 +69,7 @@
                 </span>
             </div>
             <ng-template #single>
-                <input class="form-control shadow-none" formControlName="{{c.formname}}" type="{{c.type}}" />
+                <input placeholder="{{c.placeholder}}" class="form-control shadow-none" id="{{c.formname}}" formControlName="{{c.formname}}" type="{{c.type}}" />
                 <span style="font-weight:500 ;color:#a5081a;font-size:0.8rem"
                     *ngIf="admissionform.controls[c.formname].errors?.required && errorstatus">Please
                     fill above field</span>
