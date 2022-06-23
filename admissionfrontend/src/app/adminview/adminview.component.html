@@ -477,7 +477,7 @@
             style="box-shadow: none;float: right;color: white;font-weight: 700;margin-left :1rem;" (click)="adduser=true;formvalue=false">
             Users</button>
         <button class="btn btn-info" 
-            style="box-shadow: none;float: right;color: white;font-weight: 700;" (click)="adduser=false;studentdata=[]">
+            style="box-shadow: none;float: right;color: white;font-weight: 700;" (click)="adduser=false;studentdata=[];showData=false">
             Home</button>
         <button (click)="exportexcel()" class="btn btn-primary" style="float: left;margin-left: 1rem;">Registrations :
             {{reglen}}</button>
@@ -1114,7 +1114,7 @@
                     <div
                         style="align-items: center;display:flex;justify-content:center;padding-top: 5%;padding-bottom: 0%;">
                         <button id="but" type="submit" class="btn btn-success">Add User</button>&nbsp;&nbsp;
-                        <button id="but" class="btn btn-danger" (click)="adduser=false">Cancel</button>
+                        <button id="but" class="btn btn-danger" (click)="adduser=false;studentdata=[];showData=false">Cancel</button>
                     </div>
                 </form><br>
             </div>
@@ -1123,7 +1123,7 @@
     </div>
 
 
-    <div class="table-responsive logo2" *ngIf="!adduser && registrations" style="height: 85vh;width: 98vw;margin-left: 1rem;">
+    <div class="table-responsive logo2" *ngIf="!adduser && registrations && !showData" style="height: 85vh;width: 98vw;margin-left: 1rem;">
         <table  class="table table-bordered table-striped text-center " style="font-size: 0.8rem;"
             id="excel-table">
             <thead style="background-color: #1b1c1e;color: #fff !important;border-bottom: none;">
