@@ -477,13 +477,13 @@
             style="box-shadow: none;float: right;color: white;font-weight: 700;margin-left :1rem;" (click)="adduser=true;formvalue=false">
             Users</button>
         <button class="btn btn-info" 
-            style="box-shadow: none;float: right;color: white;font-weight: 700;" (click)="adduser=false;studentdata=[];showData=false">
+            style="box-shadow: none;float: right;color: white;font-weight: 700;" (click)="home()">
             Home</button>
         <button (click)="exportexcel()" class="btn btn-primary" style="float: left;margin-left: 1rem;">Registrations :
             {{reglen}}</button>
 
         <div style="display: flex;justify-content:center;">
-            <input [(ngModel)]="type" placeholder="start typing hallticket number ..." (click)="showData=false"
+            <input  [(ngModel)]="type" placeholder="start typing hallticket number ..." (click)="clickedInput()"
                 class="form-control shadow-none" style="width: 20vw;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;"
                 [(ngModel)]="type" />&nbsp;
             <button class="btn btn-dark " style="box-shadow: none;" [disabled]="adduser==true"

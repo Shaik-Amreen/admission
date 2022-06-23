@@ -25,6 +25,7 @@ export class LoginpageComponent implements OnInit {
 
   constructor(private http: HttpClient, private router: Router) {
     sessionStorage.removeItem('mail')
+    sessionStorage.removeItem("hallticket")
     let form: any = {}
 
     this.formdata.forEach((e: any) => {

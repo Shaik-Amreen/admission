@@ -26,12 +26,20 @@ export class AdminviewComponent implements OnInit {
 
   studentdata: any = []; type: any = ''; role: any; adduser = false; registrations: any
   reglen: any = 0; adminmails: any = []
+
   constructor(private http: HttpClient, private router: Router) {
     this.http.post('http://localhost:4000/registrations', {}).subscribe((res: any) => {
       console.log(res, "res")
       this.registrations = res.registrations
       this.reglen = res.registrations.length
     })
+
+
+
+    if (sessionStorage.getItem('hallticket')) {
+      this.type = sessionStorage.getItem('hallticket')
+      this.filterStudent()
+    }
 
     this.getadmin();
 
@@ -47,6 +55,12 @@ export class AdminviewComponent implements OnInit {
     })
   }
 
+
+  clickedInput() {
+    this.showData = false
+    sessionStorage.removeItem("hallticket")
+  }
+
   display: any = 'none'
 
   @ViewChild('report')
@@ -58,13 +72,18 @@ export class AdminviewComponent implements OnInit {
     this.display = "block";
   }
 
-  getadmin(){
+  home(){
+    this.adduser=false;this.studentdata=[];this.showData=false
+    sessionStorage.removeItem("hallticket")
+  }
+
+  getadmin() {
     this.http.post('http://localhost:4000/getadmin', { mail: sessionStorage.getItem("mail") }).subscribe(
       (res: any) => {
         this.role = res.data
         this.http.post("http://localhost:4000/getadmins", '').subscribe(
           (s: any) => {
-            console.log(s.data,"s.data")
+            console.log(s.data, "s.data")
             this.adminmails = s.data
           })
       }
