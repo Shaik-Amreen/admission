@@ -59,3 +59,7 @@ div {
     border-radius: 3px;
     width: 600px;height: 500px;
 }
+
+.btn:hover {
+    opacity: 0.8;
+  }

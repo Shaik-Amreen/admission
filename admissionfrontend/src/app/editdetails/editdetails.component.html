@@ -78,8 +78,10 @@
                 </ng-template>
             </span>
         </div>
-
-        <div class="col"><br /><br /><br />
+        <button class="btn btn-info" style="box-shadow: none;width: 4.5rem;position: fixed;top:10%;right:1%;color: white;font-weight: 700;"
+            (click)="home()">
+            Home</button>
+        <div class="col" *ngIf="formdata"><br /><br /><br />
             <span style="font-size: 1rem;font-weight:600;color: #a5081a;"> FOR OFFICE USE - CHECK
                 LIST</span><br /><br />
             <div class="row  shadow">
@@ -216,7 +218,7 @@
             </div><br />
             <div style="display: flex;">
                 <button type="submit" class="btn btn-success">SUBMIT</button>&nbsp;
-                <button type="button"  routerLink="/admin" class="btn btn-danger">CLOSE</button>
+                <button type="button" routerLink="/admin" class="btn btn-danger">CLOSE</button>
             </div>
         </div>
         <br />

@@ -17,3 +17,7 @@ select {
     background-attachment: fixed;
     background-position: center;
 }
+
+.btn:hover {
+    opacity: 0.8;
+  }

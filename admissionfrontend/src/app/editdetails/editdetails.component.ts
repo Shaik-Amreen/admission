@@ -259,6 +259,11 @@ export class EditdetailsComponent implements OnInit {
     }
   }
 
+  home(){
+    sessionStorage.removeItem('hallticket')
+    this.route.navigate(['/admin'])
+  }
+
   ngOnInit(): void {
   }
 

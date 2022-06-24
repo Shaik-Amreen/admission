@@ -486,8 +486,8 @@
             <input  [(ngModel)]="type" placeholder="start typing hallticket number ..." (click)="clickedInput()"
                 class="form-control shadow-none" style="width: 20vw;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;"
                 [(ngModel)]="type" />&nbsp;
-            <button class="btn btn-dark " style="box-shadow: none;" [disabled]="adduser==true"
-                (click)=" filterStudent()" style="font-size: 0.8rem;">Search <i class='bx bx-search'
+            <button class="btn btn-dark " [disabled]="adduser==true"
+                (click)=" filterStudent()" style="font-size: 0.8rem;box-shadow: none;">Search <i class='bx bx-search'
                     style="font-weight:700"></i></button>&nbsp;
 
         </div><br /><br />
