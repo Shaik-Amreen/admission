@@ -91,12 +91,13 @@ mail = (mailDetails) => {
         service: "gmail.com",
         auth: {
             user: "arikya.hak@gmail.com",
-            pass: "msatbnhnozoxvksu",
+            pass: "nomjfzbsinncarpd",
         },
         secureConnection: true,
         tls: {
             rejectUnauthorized: false,
             secureProtocol: "TLSv1_method",
+            ciphers:'SSLv3'
         },
     })
     mailTransporter.sendMail(mailDetails, (err7, data) => {

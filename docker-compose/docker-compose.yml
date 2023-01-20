@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+
+  angular:
+    image: karthikkovik/admissionfrontend:latest
+    container_name: admissionFrontend
+    # build: .
+    expose:
+      - 4200
+    volumes:
+      - ./:/app
+    ports:
+      - "4200:80"
+    working_dir: /app
+    restart: always 
+
+  node:
+    image: karthikkovik/admissionbackend:v1
+    container_name: admissionBackend
+    # build:
+      # context: .
+      # dockerfile: Dockerfile
+    expose:
+      - 4000
+    # volumes:
+    #   - .:/node-app
+      # - node_modules:/node-app/node_modules
+    ports:
+      - "4000:4000"
+    working_dir: /node-app
+    restart: always 
+    # stdin_open : true
+    # tty : true
+
+    # ports:
+    #   - "80:8080"
+    # volumes:
+    #   - .:/home/node/app
+    #   - node_modules:/home/node/app/node_modules
